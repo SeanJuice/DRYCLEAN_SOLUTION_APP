@@ -1,0 +1,45 @@
+<mat-nav-list>
+    <div class="logo py-4">
+      <button routerLink="/profile">
+        <img class="avatar mat-elevation-z8" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" width="128" height="128">
+        <h2>  {{ user.name}}  {{ user.surname}}</h2>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader class="mt-2">APPLICATIONS</h2>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="home">
+      <mat-icon>home</mat-icon> Home
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="profile">
+      <mat-icon>person</mat-icon> Profile
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="order">
+      <mat-icon>shopping_cart</mat-icon>Order
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="orders">
+      <mat-icon>shopping_cart</mat-icon>My Orders
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="services" *ngIf="isAdmin">
+      <mat-icon> local_laundry_service</mat-icon> Services
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="customers" *ngIf="isAdmin" >
+      <mat-icon> people</mat-icon> Customers
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="employees" *ngIf="isAdmin" >
+      <mat-icon> people</mat-icon> Employees
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="shops" *ngIf="isAdmin">
+      <mat-icon>store</mat-icon> Shops
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="dashboard">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+   
+    <!-- <ng-container *ngFor="let side of sidenavigation">
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="side.link">
+        <mat-icon>{{side.icon}}</mat-icon> 
+         {{side.name}}
+      </a>  
+    </ng-container> -->
+  </mat-nav-list>

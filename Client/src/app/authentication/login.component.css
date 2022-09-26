@@ -1,0 +1,46 @@
+body{
+	margin: 0;
+	padding: 0;
+	/* background: linear-gradient(120deg, #2980b9, #8e44ad); */
+	background-image: url('https://s29958.pcdn.co/wp-content/uploads/2019/03/laundry.png') ;
+}
+.login-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	background: white;
+	border-radius: 10px;
+}
+
+.login-wrapper h1{
+	font-size: bold;
+	text-align: center;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid silver;
+}
+
+.form{
+	padding: 0 40px;
+	box-sizing: border-box;
+}
+
+.full-width{
+	position: relative;
+	margin: 5px 0;
+	width: 100%;
+
+}
+.full-width input{
+	width: 100px;
+	padding: 0 5px;
+	font-size: 16px;
+	border: none;
+	background: none;
+	outline: none;
+}
+.matInput{
+	width: 100px;
+	padding: 0 5px;
+}

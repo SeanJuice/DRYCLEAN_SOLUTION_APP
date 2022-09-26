@@ -1,0 +1,39 @@
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div>
+      <a href="#">
+        <img
+          class="primary-icon"
+          src="data:image/png;base64,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"
+        />
+      </a>
+    </div>
+    <div class="row mr-2 ml-auto">
+      <ul class="row m-0 align-items-center">
+        <li>
+          <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            class="user mt-2 d-flex align-items-center"
+          >
+            <mat-icon>person</mat-icon>
+
+            {{ user?.name }} {{ user?.surname }}
+            <mat-icon class="user-image-icon ml-1"
+              >keyboard_arrow_down</mat-icon
+            >
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logOut()">
+              <mat-icon>exit_to_app</mat-icon>
+              Logout
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

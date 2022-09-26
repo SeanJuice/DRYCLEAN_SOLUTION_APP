@@ -1,0 +1,14 @@
+{
+    "mixers": [
+      {
+          "input": [
+              "./prisma/schemas/base.prisma",
+              "./prisma/schemas/user.prisma",
+              "./prisma/schemas/customer.prisma",
+              "./prisma/schemas/order.prisma",
+              "./prisma/schemas/service.prisma"
+          ],
+          "output": "prisma/schema.prisma"
+      }
+    ]
+  }

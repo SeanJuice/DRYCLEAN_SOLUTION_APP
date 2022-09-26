@@ -1,0 +1,18 @@
+model Service {
+    id            Int          @id @default(autoincrement())
+    name          String
+    picture       String?
+    price         Int
+    status        String
+    serviceType   ServiceType? @relation(name: "serviceType", fields: [serviceTypeId], references: [id])
+    serviceTypeId Int
+
+    @@map("services")
+}
+
+model ServiceType {
+    id          Int       @id @default(autoincrement())
+    name        String
+    description String
+    service     Service[] @relation("serviceType")
+}

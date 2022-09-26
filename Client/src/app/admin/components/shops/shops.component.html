@@ -1,0 +1,44 @@
+
+
+
+  <div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Orders</div>
+    <div class="page__content shadow p-3 position-relative">
+      <div class="container-fluid">
+        <h1 class="text-center"><b></b></h1>
+        <br>
+  
+  
+        <mat-toolbar>
+          <button mat-raised-button color="primary"(click)="AddShop()">Add Shop</button>
+        </mat-toolbar>
+       <app-table [data]="shops" class="table  table-striped" >
+        <ng-template #headers>
+          <th>Shop Name</th>
+          <th>Manager Name</th>
+          <th>Location</th>
+
+          <th>Edit</th>
+          <th>Remove</th>
+        </ng-template>
+        <ng-template #rows let-row >
+          <td>{{ row.ShopName  }}</td>
+          <td>{{ row.ManagerName }}</td>
+          <td>{{ row.Location }}</td>
+          <td>
+            <button mat-fab color="primary" aria-label=" edit icon" (click)="edit(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+
+          <td>
+            <button mat-fab color="primary" aria-label=" delete icon" (click)="remove(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-template>
+      </app-table> 
+  
+      </div>
+    </div>
+  </div>

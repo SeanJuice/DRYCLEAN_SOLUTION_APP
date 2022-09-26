@@ -1,0 +1,108 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Services</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-fluid">
+      <h1 class="text-center"><b>Create Service</b></h1>
+      <br />
+
+      <form [formGroup]="myForm" (ngSubmit)="saveForm(myForm)">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Name</th>
+              <th>Price (R)</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Category</mat-label>
+                  <mat-select formControlName="serviceTypeId">
+                    <mat-option
+                      *ngFor="let service of categories"
+                      [value]="service.id"
+                      >{{ service.name }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter Name</mat-label>
+                  <input
+                    matInput
+                    formControlName="Service_Description"
+                    formControlName="name"
+                  />
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter Price</mat-label>
+                  <input matInput currencyMask formControlName="price" />
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Status</mat-label>
+                  <mat-select formControlName="status">
+                    <mat-option value="Active">Active</mat-option>
+                    <mat-option value="Pending">Pending</mat-option>
+                    <mat-option value="Unactive">Unactive</mat-option>
+                    <mat-option value="NonExisting"
+                      >No Longer Exists</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <button mat-raised-button color="primary">Create Service</button>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <br />
+      <br />
+
+      <app-table [data]="services" class="table table-striped">
+        <ng-template #headers>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Price (R)</th>
+          <th>Edit</th>
+          <th>Remove</th>
+        </ng-template>
+        <ng-template #rows let-row>
+          <td>{{ row.serviceType }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.price }}</td>
+          <td>
+            <button mat-fab color="primary" aria-label=" edit icon">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+
+          <td>
+            <button
+              mat-fab
+              color="primary"
+              aria-label=" delete icon"
+              (click)="removeService(row.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-template>
+      </app-table>
+    </div>
+  </div>
+</div>

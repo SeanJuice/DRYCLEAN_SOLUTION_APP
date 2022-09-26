@@ -1,0 +1,49 @@
+<h1 class="text-center"><b>Monthly Sales Report</b></h1>
+
+<div id="MonthlySales">
+
+<div class="col-md-10">
+<h2 class="text-center">Bar Chart of Monthly Sales</h2>
+  <canvas baseChart
+  [datasets]="barChartData"
+  [labels]="barChartLabels"
+  [options]="barChartOptions"
+  [plugins]="barChartPlugins"
+  [legend]="barChartLegend">
+</canvas>
+</div>
+    
+
+<div class="container-fluid" style="margin-top: 4%">
+    <div class="row">
+        <div class="col-lg-4 offset-4">
+            <h2 class="text-center">List of Monthly Sales</h2>
+        </div> 
+    </div>
+</div>
+
+
+<table class="table  table-striped">
+
+    <thead>
+        <th>Month</th>
+        <th>Total Orders</th>
+        <th>Total Amount (R)</th>
+        <th>Total Cancelation Orders</th>
+        <th>VAT Payable 15% (R)</th>
+    </thead>
+
+    <tbody>
+        
+    </tbody>
+
+</table>
+
+</div>
+
+<div class="col-md-2">
+    <button mat-raised-button color="primary" (click)="openPDF()">Print</button>
+  </div>
+
+
+

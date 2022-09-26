@@ -1,0 +1,22 @@
+model Employee {
+    id           Int    @id @default(autoincrement())
+    Name         String
+    Surname      String
+    employeeCode String
+
+    jobTitle    String
+    email       String
+    mobilePhone String
+    address     String
+    postalCode  String
+    city        String
+    province    String
+    notes       String?
+    shop        Shop    @relation("ShopEmployee", fields: [shopId], references: [id])
+    shopId      Int
+}
+
+model Shop {
+    id         Int        @id @default(autoincrement())
+    orderLines Employee[] @relation("ShopEmployee")
+}

@@ -1,0 +1,41 @@
+<body>
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <form class="form" [formGroup]="registerFormGroup" (ngSubmit)="RegisterUser()">
+
+        <mat-card-content>
+          <div   class="col-md-12">
+          <mat-form-field class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput class="form-contorl" placeholder="Enter a valid Email address" formControlName="name">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Surname</mat-label>
+            <input  matInput class="form-contorl" placeholder="Enter a valid Email address" formControlName="surname">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label> Phone Number</mat-label>
+            <input  matInput class="form-contorl"  placeholder="Enter a valid Email address" formControlName="phoneNumber">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Email Address</mat-label>
+            <input  matInput class="form-contorl" placeholder="Enter a valid Email address" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+            <input type="password"  matInput class="form-contorl" placeholder="Enter between 6 to 16 characters" formControlName="password">
+          </mat-form-field>
+          </div>
+        </mat-card-content>
+        <button mat-stroked-button color="primary" class="btn-block" type="submit">Register</button>
+      </form>
+
+
+    </mat-card>
+  </div>
+
+</body>
+

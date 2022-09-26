@@ -1,0 +1,35 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Orders</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-fluid">
+      <h1 class="text-center"><b></b></h1>
+      <br>
+
+
+        <app-table [data]="orders" class="table  table-striped" >
+          <ng-template #headers>
+            <th>Order Number</th>
+            <th>Invoice Date</th>
+            <th>Collection Date</th>
+          </ng-template>
+          <ng-template #rows let-row >
+            <td>{{ row.OrderNumber  }}</td>
+            <td>{{ row.InvoiceDate }}</td>
+            <td>{{ row.CollectionDate }}</td>
+            <td>
+              <button mat-fab color="primary" aria-label=" edit icon"  (click)="Edit(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+
+            <td>
+              <button mat-fab color="primary" aria-label=" delete icon" (click)="remove(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-template>
+        </app-table>
+
+    </div>
+  </div>
+</div>

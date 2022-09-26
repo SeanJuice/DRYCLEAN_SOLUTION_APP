@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "thegrid-d1dac": {
+      "hosting": {
+        "projectCode": [
+          "drycleansolutions"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "thegrid-d1dac"
+  }
+}

@@ -1,0 +1,43 @@
+model Order {
+    id                 Int                 @id @default(autoincrement())
+    invoiceDate        DateTime
+    collectionTime     DateTime
+    onvoiceDate        DateTime
+    orderNumber        Int
+    VAT                Int
+    totalAmount        Int
+    totalAmountWithVAT Int
+    orders             OrderLine[]
+    profileInformation PaymentInformation?
+    userId             Int
+    user               User                @relation(fields: [userId], references: [id])
+
+    @@map("orders")
+}
+
+model User {
+    id     Int     @id
+    orders Order[]
+}
+
+model OrderLine {
+    id        Int     @id @default(autoincrement())
+    order     Order   @relation(fields: [orderId], references: [id])
+    orderId   Int // relation scalar field  (used in the `@relation` attribute above)
+    service   Service @relation("OrderlineService", fields: [serviceId], references: [id])
+    serviceId Int
+}
+
+model Service {
+    id         Int         @id
+    orderLines OrderLine[] @relation("OrderlineService")
+}
+
+model PaymentInformation {
+    id                Int      @id @default(autoincrement())
+    paymentDate       DateTime
+    paymentType       String
+    paymentOrderNotes String?
+    order             Order    @relation(fields: [orderId], references: [id])
+    orderId           Int      @unique // relation scalar field (used in the `@relation` attribute above)
+}
