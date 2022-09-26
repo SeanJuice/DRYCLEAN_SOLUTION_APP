@@ -30,42 +30,36 @@ model Role {
 }
 
 model Customer {
-  id            Int    @id @default(autoincrement())
-  Name          String
-  Surname       String
-  Company       String
-  WebPage       String
-  JobTitle      String
-  Email         String
-  BusinessPhone String
-  MobilePhone   String
-  FaxNumber     String
-  Address       String
-  PostalCode    Int
-  City          String
-  Province      String
-  Notes         String
+  id          Int    @id @default(autoincrement())
+  Name        String
+  Surname     String
+  Email       String
+  MobilePhone String
+  Address     String
+  PostalCode  Int
+  City        String
+  Province    String
+  Notes       String
 }
 
 model Order {
   id                 Int                 @id @default(autoincrement())
   invoiceDate        DateTime
   collectionTime     DateTime
-  onvoiceDate        DateTime
   orderNumber        Int
   VAT                Int
   totalAmount        Int
   totalAmountWithVAT Int
   orders             OrderLine[]         @relation(name: "OrderToOrderLine")
-  profileInformation PaymentInformation? @relation(name: "OrderToPaymentInformation")
+  paymentInformation PaymentInformation? @relation(name: "OrderToPaymentInformation")
   userId             Int
   user               User                @relation(name: "OrderToUser", fields: [userId], references: [id])
-
-  @@map("orders")
 }
 
 model OrderLine {
   id        Int     @id @default(autoincrement())
+  quantity  Int
+  price     Int
   order     Order   @relation(name: "OrderToOrderLine", fields: [orderId], references: [id])
   orderId   Int
   service   Service @relation(name: "OrderlineService", fields: [serviceId], references: [id])
@@ -81,8 +75,6 @@ model Service {
   status        String
   serviceType   ServiceType? @relation(name: "serviceType", fields: [serviceTypeId], references: [id])
   serviceTypeId Int
-
-  @@map("services")
 }
 
 model PaymentInformation {
@@ -99,4 +91,28 @@ model ServiceType {
   name        String
   description String
   service     Service[] @relation(name: "serviceType")
+}
+
+model Employee {
+  id           Int     @id @default(autoincrement())
+  name         String
+  surname      String
+  employeeCode String
+  jobTitle     String
+  email        String
+  mobilePhone  String
+  address      String
+  postalCode   String
+  city         String
+  province     String
+  notes        String?
+  shop         Shop    @relation(name: "ShopEmployee", fields: [shopId], references: [id])
+  shopId       Int
+}
+
+model Shop {
+  id        Int        @id @default(autoincrement())
+  employees Employee[] @relation(name: "ShopEmployee")
+  name      String
+  location  String
 }

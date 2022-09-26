@@ -11,23 +11,25 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@applicationLayer|controllers": ["src/application/controllers/index"],
-      "@applicationLayer|dtos": ["src/application/dtos/index"],
+      "@applicationLayer|controllers": ["src/application/controllers/_index"],
+      "@applicationLayer|dtos": ["src/application/dtos/_index"],
       // "@applicationlayer|controllers/*": ["src/application/****/*"]
 
-      "@domainLayer|entities": ["src/domain/entities"],
-      "@domainLayer|interfaces": ["src/domain/interfaces"],
-      "@domainLayer|enums": ["src/domain/enums"],
-      "@domainLayer|helpers": ["src/domain/helpers"],
-      "@domainLayer|providers": ["src/domain/providers"],
-      "@domainLayer|services": ["src/domain/providers"],
-      "@domainLayer|modules": ["src/domain/modules"],
+      "@domainLayer|entities": ["src/domain/entities/_index"],
+      "@domainLayer|interfaces": ["src/domain/interfaces/_index"],
+      "@domainLayer|enums": ["src/domain/enums/_index"],
+      "@domainLayer|helpers": ["src/domain/helpers/_index"],
+      "@domainLayer|providers": ["src/domain/providers/_index"],
+      "@domainLayer|services": ["src/domain/services/_index"],
+      "@domainLayer|modules": ["src/domain/modules/_index"],
       // "@domainLayer|services/*": ["src/application/***/*"],
 
-      "@infrastructureLayer|config": ["src/infrastructure/config/index"],
-      "@infrastructureLayer|database": ["src/infrastructure/database/index"],
-      "@infrastructureLayer|repositories": ["src/infrastructure/repositories"],
-      "@infrastructureLayer|modules": ["src/infrastructure/modules/index"]
+      "@infrastructureLayer|config": ["src/infrastructure/config/_index"],
+      "@infrastructureLayer|database": ["src/infrastructure/database/_index"],
+      "@infrastructureLayer|repositories": [
+        "src/infrastructure/repositories/_index"
+      ],
+      "@infrastructureLayer|modules": ["src/infrastructure/modules/_index"]
       // "@infrastructureLayer|modules/*": ["src/infrastructure/***/*"],
     },
     "incremental": true,

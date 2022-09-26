@@ -1,3 +1,5 @@
+import { BaseEntity } from '@domainLayer|entities';
+import { IBaseService } from '@domainLayer|interfaces';
 import {
   BadGatewayException,
   Body,
@@ -8,8 +10,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { BaseEntity } from 'src/domain/entities';
-import { IBaseService } from 'src/domain/interfaces';
 
 @Injectable()
 export class BaseService<T extends BaseEntity> implements IBaseService<T> {

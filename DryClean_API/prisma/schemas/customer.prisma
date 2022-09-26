@@ -1,17 +1,12 @@
 model Customer {
-    id            Int    @id @default(autoincrement())
-    Name          String
-    Surname       String
-    Company       String
-    WebPage       String
-    JobTitle      String
-    Email         String
-    BusinessPhone String
-    MobilePhone   String
-    FaxNumber     String
-    Address       String
-    PostalCode    Int
-    City          String
-    Province      String
-    Notes         String
+    id          Int    @id @default(autoincrement())
+    Name        String
+    Surname     String
+    Email       String
+    MobilePhone String
+    Address     String
+    PostalCode  Int
+    City        String
+    Province    String
+    Notes       String
 }

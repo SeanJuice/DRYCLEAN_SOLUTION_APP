@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { UserRepository } from 'src/infrastructure/repositories';
+import { UserRepository } from 'src/infrastructure/repositories/_index';
 import { JwtPayload } from '../interfaces/jwtPayload';
 import { loginReponse } from '../interfaces/loginResponse';
 import { EmailService } from './email.service';

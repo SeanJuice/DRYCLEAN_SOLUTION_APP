@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  user = JSON.parse(localStorage.getItem('user')!)
+  user: any;
 
-  constructor() { }
+  constructor(private userService: TokenStorageService) {}
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
   }
-
 }

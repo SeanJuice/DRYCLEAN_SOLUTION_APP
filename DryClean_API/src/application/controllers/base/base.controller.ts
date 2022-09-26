@@ -1,6 +1,6 @@
+import { BaseEntity } from '@domainLayer|entities';
 import { Body, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
-import { BaseEntity } from 'src/domain/entities';
 import { IBaseService } from '../../../domain/interfaces/base/IBase.service';
 
 export class BaseController<T extends BaseEntity> {

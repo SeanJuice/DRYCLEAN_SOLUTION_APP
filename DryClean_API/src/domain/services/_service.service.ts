@@ -1,6 +1,6 @@
-import { ServiceRepository } from '@infrastructureLayer|repositories';
 import { Injectable } from '@nestjs/common';
 import { Service, ServiceType } from '@prisma/client';
+import { ServiceRepository } from 'src/infrastructure/repositories/_index';
 import { BaseService } from './base/base.service';
 @Injectable()
 export class serviceService extends BaseService<Service> {

@@ -11,7 +11,7 @@ import {
   // ApiBearerAuth,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthService, UserService } from 'src/domain/services';
+import { AuthService, UserService } from 'src/domain/services/_index';
 import { CodeDTO } from '../dtos/code.dto';
 import { createUserDTO } from '../dtos/createUser.dto';
 import { UserLoginDTO } from '../dtos/userLogin.dto';

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BehaviorSubject } from 'rxjs';
+import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 import { CustomerInterface } from '../../models/Customer.interface';
 import { CustomersService } from '../../services/customers.service';
 import { OrderService } from '../../services/orders.service';
@@ -26,14 +27,14 @@ export class OrderComponent implements OnInit {
   amount: number;
   priceWithVAT: number;
   VATprice: number;
-  user = JSON.parse(localStorage.getItem('user')!);
+  user: any;
   rows: any = [];
   options: any;
   reference = `CleanAP_${Math.ceil(Math.random() * 10e10)}`;
 
   public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   displayedColumns = [
-    'CategoryName',
+    // 'CategoryName',
     'Service',
     'ServiceQuantity',
     'ServicePrice',
@@ -47,8 +48,11 @@ export class OrderComponent implements OnInit {
     private fb: FormBuilder,
     private sharedService: ShareDataService,
     private pdfGenerate: PdfGenerateService,
-    private orderService: OrderService
-  ) {}
+    private orderService: OrderService,
+    private authService: TokenStorageService
+  ) {
+    this.user = this.authService.getUser();
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -56,7 +60,7 @@ export class OrderComponent implements OnInit {
     this.getCategorySelected();
     this.getServices();
     this.getPrice();
-    if (this.user?.userRole == 1) {
+    if (this.user?.roleId == 1) {
       this.isAdmin.next(false);
       console.log(this.user);
       this.customer = {
@@ -165,10 +169,7 @@ export class OrderComponent implements OnInit {
   PlaceOrder() {
     let data: any;
     if (this.user?.userRole == 1) {
-      this.customer = {
-        Name: this.user.name,
-        Surname: this.user.surname,
-      };
+      this.customer = this.user.id;
     }
     console.log(
       this.collectionPaymentForm.valid,
@@ -184,7 +185,7 @@ export class OrderComponent implements OnInit {
       this.rows.length > 0
     ) {
       data = {
-        Customer: this.customer,
+        userId: this.customer,
         orders: this.rows,
         orderNumber: Math.round(Math.random() * 400),
         totalAmount: this.getTotalCost(),

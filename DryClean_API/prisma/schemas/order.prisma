@@ -2,17 +2,14 @@ model Order {
     id                 Int                 @id @default(autoincrement())
     invoiceDate        DateTime
     collectionTime     DateTime
-    onvoiceDate        DateTime
     orderNumber        Int
     VAT                Int
     totalAmount        Int
     totalAmountWithVAT Int
     orders             OrderLine[]
-    profileInformation PaymentInformation?
+    paymentInformation PaymentInformation?
     userId             Int
     user               User                @relation(fields: [userId], references: [id])
-
-    @@map("orders")
 }
 
 model User {
@@ -21,7 +18,10 @@ model User {
 }
 
 model OrderLine {
-    id        Int     @id @default(autoincrement())
+    id       Int @id @default(autoincrement())
+    quantity Int
+    price    Int
+
     order     Order   @relation(fields: [orderId], references: [id])
     orderId   Int // relation scalar field  (used in the `@relation` attribute above)
     service   Service @relation("OrderlineService", fields: [serviceId], references: [id])

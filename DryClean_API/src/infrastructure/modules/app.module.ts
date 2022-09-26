@@ -1,9 +1,24 @@
+import {
+  AuthModule,
+  MailModule,
+  ServiceModule,
+  ShopModule,
+} from '@domainLayer|modules';
 import { Module } from '@nestjs/common';
-import { AuthModule, ServiceModule } from 'src/domain/modules';
-import { MailModule } from '../../domain/modules/mail.module';
+import { EmployeeModule } from '../../domain/modules/employee.module';
+import { OrderModule } from './../../domain/modules/order.module';
 
 @Module({
-  imports: [AuthModule, MailModule, ServiceModule, AuthModule, MailModule],
+  imports: [
+    OrderModule,
+    EmployeeModule,
+    ShopModule,
+    AuthModule,
+    MailModule,
+    ServiceModule,
+    AuthModule,
+    MailModule,
+  ],
   controllers: [],
   providers: [MailModule],
 })

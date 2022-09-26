@@ -1,7 +1,7 @@
 import { createUserDTO } from '@applicationLayer|dtos';
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { UserRepository } from 'src/infrastructure/repositories';
+import { UserRepository } from 'src/infrastructure/repositories/_index';
 import { BaseService } from './base/base.service';
 
 @Injectable()

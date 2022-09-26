@@ -1,6 +1,6 @@
 import { ServiceController } from '@applicationLayer|controllers';
-import { ServiceRepository } from '@infrastructureLayer|repositories';
 import { Module } from '@nestjs/common';
+import { ServiceRepository } from 'src/infrastructure/repositories/_index';
 import { serviceService } from '../services/_service.service';
 
 @Module({

@@ -6,8 +6,12 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/domain/helpers';
 import { DataInterceptor } from 'src/domain/helpers/interceptors/data.interceptor';
 import { LocalStrategy } from 'src/domain/providers/local.strategy';
-import { AuthService, EmailService, UserService } from 'src/domain/services';
-import { UserRepository } from 'src/infrastructure/repositories';
+import {
+  AuthService,
+  EmailService,
+  UserService,
+} from 'src/domain/services/_index';
+import { UserRepository } from 'src/infrastructure/repositories/_index';
 import { MailModule } from '../mail.module';
 @Module({
   imports: [

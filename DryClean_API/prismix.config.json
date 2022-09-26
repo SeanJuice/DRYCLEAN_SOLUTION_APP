@@ -6,7 +6,12 @@
               "./prisma/schemas/user.prisma",
               "./prisma/schemas/customer.prisma",
               "./prisma/schemas/order.prisma",
-              "./prisma/schemas/service.prisma"
+              "./prisma/schemas/service.prisma",
+              "./prisma/schemas/employee.prisma",
+              "./prisma/schemas/shop.prisma"
+
+
+              
           ],
           "output": "prisma/schema.prisma"
       }
