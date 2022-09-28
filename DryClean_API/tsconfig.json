@@ -22,6 +22,7 @@
       "@domainLayer|providers": ["src/domain/providers/_index"],
       "@domainLayer|services": ["src/domain/services/_index"],
       "@domainLayer|modules": ["src/domain/modules/_index"],
+      "@domainLayer|mappers": ["src/domain/mappers/_index"],
       // "@domainLayer|services/*": ["src/application/***/*"],
 
       "@infrastructureLayer|config": ["src/infrastructure/config/_index"],
