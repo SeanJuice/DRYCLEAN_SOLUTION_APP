@@ -1,0 +1,134 @@
+/**
+ * Model User
+ *
+ */
+export class User {
+  id: number;
+  email: string;
+  name: string | null;
+  surname: string;
+  phoneNumber: number;
+  password: string;
+  roleId: number;
+  createdAt: Date;
+  authConfirmToken: number | null;
+  isVarrified: boolean | null;
+}
+
+/**
+ * Model Role
+ *
+ */
+export class Role {
+  id: number;
+  description: string;
+}
+
+/**
+ * Model Customer
+ *
+ */
+export class Customer {
+  id: number;
+  Name: string;
+  Surname: string;
+  Email: string;
+  MobilePhone: string;
+  Address: string;
+  PostalCode: number;
+  City: string;
+  Province: string;
+  Notes: string;
+}
+
+/**
+ * Model Order
+ *
+ */
+export class Order {
+  id: number;
+  invoiceDate: Date;
+  collectionTime: Date;
+  orderNumber: number;
+  VAT: number;
+  totalAmount: number;
+  totalAmountWithVAT: number;
+  userId: number;
+}
+
+/**
+ * Model OrderLine
+ *
+ */
+export class OrderLine {
+  id?: number;
+  quantity: number;
+  price: number;
+  orderId: number;
+  serviceId: number;
+}
+
+/**
+ * Model Service
+ *
+ */
+export class Service {
+  id: number;
+  name: string;
+  picture: string | null;
+  price: number;
+  status: string;
+  serviceTypeId: number;
+}
+
+/**
+ * Model PaymentInformation
+ *
+ */
+export class PaymentInformation {
+  id: number;
+  paymentDate: Date;
+  paymentclass: string;
+  paymentOrderNotes: string | null;
+  orderId: number;
+}
+
+/**
+ * Model Serviceclass
+ *
+ */
+export class Serviceclass {
+  id: number;
+  name: string;
+  description: string;
+}
+
+/**
+ * Model Employee
+ *
+ */
+export class Employee {
+  id: number;
+  name: string;
+  surname: string;
+  employeeCode: string;
+  jobTitle: string;
+  email: string;
+  mobilePhone: string;
+  address: string;
+  postalCode: string;
+  city: string;
+  province: string;
+  notes: string | null;
+  shopId: number;
+}
+
+/**
+ * Model Shop
+ *
+ */
+export class Shop {
+  id: number;
+  name: string;
+  location: string;
+}

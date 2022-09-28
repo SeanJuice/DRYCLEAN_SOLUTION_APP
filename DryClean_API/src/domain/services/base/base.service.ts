@@ -1,21 +1,11 @@
 import { BaseEntity } from '@domainLayer|entities';
 import { IBaseService } from '@domainLayer|interfaces';
-import {
-  BadGatewayException,
-  Body,
-  Delete,
-  Get,
-  Injectable,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { BadGatewayException, Body, Injectable, Param } from '@nestjs/common';
 
 @Injectable()
 export class BaseService<T extends BaseEntity> implements IBaseService<T> {
   constructor(private readonly genericRepository: any) {}
 
-  @Post('')
   create(@Body() entity: any): Promise<T> {
     try {
       return new Promise<T>((resolve, reject) => {
@@ -29,7 +19,6 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
     }
   }
 
-  @Get('/')
   getAll(): Promise<T[]> {
     try {
       return <Promise<T[]>>this.genericRepository.getAll();
@@ -38,7 +27,6 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
     }
   }
 
-  @Post('get/:id')
   findById(@Param('id') id: number): Promise<T> {
     try {
       return <Promise<T>>this.genericRepository.findById(id);
@@ -55,7 +43,6 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
     }
   }
 
-  @Delete(':id')
   delete(@Param('id') id: number) {
     try {
       this.genericRepository.delete(id);
@@ -63,7 +50,6 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
       throw new BadGatewayException(error);
     }
   }
-  @Put(':id')
   update(@Param('id') id: number, @Body() entity: T): Promise<T> {
     try {
       return new Promise<T>((resolve, reject) => {

@@ -1,10 +1,10 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BehaviorSubject } from 'rxjs';
 import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 import { CustomerInterface } from '../../models/Customer.interface';
+import { Order } from '../../models/order';
 import { CustomersService } from '../../services/customers.service';
 import { OrderService } from '../../services/orders.service';
 import { ShareDataService } from '../../services/shareData.service';
@@ -79,7 +79,7 @@ export class OrderComponent implements OnInit {
   addToTable(myForm: any) {
     console.log(myForm);
     let data: any = {
-      // serviceTypeId: myForm.value.serviceTypeId,
+      // serviceName: this.categories.find((x) => x.id === myForm.value.serviceId) .name,
       serviceId: myForm.value.serviceId,
       price: myForm.value.price,
       quantity: Number(myForm.value.quantity),
@@ -97,7 +97,7 @@ export class OrderComponent implements OnInit {
   }
   getTotalCost() {
     let total = this.rows
-      .map((t: any) => t.ServicePrice)
+      .map((t: any) => t.price)
       .reduce((acc: any, value: any) => acc + value, 0);
     this.priceWithVAT = total + total * 0.15;
     this.VATprice = total * 0.15;
@@ -168,7 +168,7 @@ export class OrderComponent implements OnInit {
 
   PlaceOrder() {
     let data: any;
-    if (this.user?.userRole == 1) {
+    if (this.user?.roleId == 1) {
       this.customer = this.user.id;
     }
     console.log(
@@ -184,23 +184,18 @@ export class OrderComponent implements OnInit {
       this.customer != null &&
       this.rows.length > 0
     ) {
-      data = {
+      const data: Order = {
         userId: this.customer,
         orders: this.rows,
         orderNumber: Math.round(Math.random() * 400),
         totalAmount: this.getTotalCost(),
         totalAmountWithVAT: this.priceWithVAT,
         VAT: this.VATprice,
-        collectionDate: this.collectionPaymentForm.value.CollectionDate,
-        collectionTime: this.collectionPaymentForm.value.CollectionTime,
-        invoiceDate: formatDate(new Date(), 'yyyy-MM-dd', 'en_US'),
-        PaymentInformation: {
+        collectionTime: this.collectionPaymentForm.value.CollectionDate,
+        invoiceDate: new Date(),
+        paymentInformation: {
           paymentType: this.collectionPaymentForm.value.PaymentType,
-          paymentDate: formatDate(
-            this.collectionPaymentForm.value.PaymentDate,
-            'yyyy-MM-dd',
-            'en_US'
-          ),
+          paymentDate: this.collectionPaymentForm.value.PaymentDate,
           paymentOrderNotes: this.collectionPaymentForm.value.PaymentOrderNotes,
         },
       };
@@ -213,12 +208,13 @@ export class OrderComponent implements OnInit {
       if (this.collectionPaymentForm.value.PaymentType == 'CreditCard') {
         document.getElementById('paystack-button').click();
       } else {
-        this.orderService.add(data).then((_) => {
-          this.pdfGenerate.generatePDF('open', data.Orders, data);
+        this.orderService.createEntity(data).subscribe((_) => {
+          this.pdfGenerate.generatePDF('open', data.orders, data);
         });
       }
+
+      console.log(data);
     }
-    console.log(data);
   }
 
   initializeForm() {
@@ -233,11 +229,14 @@ export class OrderComponent implements OnInit {
       DeliveryInformation: ['', Validators.required],
       CollectionDate: ['', Validators.required],
       CollectionTime: ['', Validators.required],
-      CustomerName: ['', Validators.required],
-      City: ['', Validators.required],
-      Province: ['', Validators.required],
-      PostalCode: ['', Validators.required],
-      Region: ['', [Validators.required]],
+      CustomerName: [
+        `${this.user.name} ${this.user.surname}`,
+        Validators.required,
+      ],
+      City: ['Pretoria', Validators.required],
+      Province: ['Gauteng', Validators.required],
+      PostalCode: ['5122', Validators.required],
+      Region: ['Gauteng', [Validators.required]],
 
       PaymentType: ['', [Validators.required]],
       PaymentDate: [Date.now(), [Validators.required]],
@@ -246,9 +245,10 @@ export class OrderComponent implements OnInit {
   }
 
   paymentDone(ref: any) {
-    this.orderService.add(ref).then((_) => {
-      this.pdfGenerate.generatePDF('open', ref.Orders, ref);
-    });
+    console.log(ref);
+    // this.orderService.createEntity(ref).subscribe((_) => {
+    //   this.pdfGenerate.generatePDF('open', ref.Orders, ref);
+    // });
   }
 
   paymentCancel() {

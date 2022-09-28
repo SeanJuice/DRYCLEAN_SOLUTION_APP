@@ -7,9 +7,11 @@ import {
 import { Module } from '@nestjs/common';
 import { EmployeeModule } from '../../domain/modules/employee.module';
 import { OrderModule } from './../../domain/modules/order.module';
+import { automapperModule } from './../external-services/automapper.module';
 
 @Module({
   imports: [
+    automapperModule,
     OrderModule,
     EmployeeModule,
     ShopModule,

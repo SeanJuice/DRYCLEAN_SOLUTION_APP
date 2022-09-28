@@ -3,6 +3,11 @@ import { IsDefined, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class EmployeeDTO {
   @IsDefined()
   @IsNotEmpty()
+  @IsOptional()
+  readonly id: number;
+
+  @IsDefined()
+  @IsNotEmpty()
   @IsString()
   name: string;
 
@@ -15,16 +20,6 @@ export class EmployeeDTO {
   @IsNotEmpty()
   @IsString()
   shopId: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @IsString()
-  EmployeeCode: string;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @IsString()
-  JobTitle: string;
 
   @IsDefined()
   @IsNotEmpty()
