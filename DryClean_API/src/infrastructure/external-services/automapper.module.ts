@@ -3,6 +3,7 @@ https://docs.nestjs.com/modules
 */
 import { classes } from '@automapper/classes';
 import { AutomapperModule } from '@automapper/nestjs';
+import { generalMapper } from '@domainLayer|mappers';
 import { Module } from '@nestjs/common';
 
 @Module({
@@ -12,6 +13,6 @@ import { Module } from '@nestjs/common';
     }),
   ],
   controllers: [],
-  providers: [],
+  providers: [generalMapper],
 })
 export class automapperModule {}

@@ -1,3 +1,4 @@
+import { generalMapper } from '@domainLayer|mappers';
 import {
   AuthModule,
   MailModule,
@@ -22,6 +23,6 @@ import { automapperModule } from './../external-services/automapper.module';
     MailModule,
   ],
   controllers: [],
-  providers: [MailModule],
+  providers: [MailModule, generalMapper],
 })
 export class AppModule {}

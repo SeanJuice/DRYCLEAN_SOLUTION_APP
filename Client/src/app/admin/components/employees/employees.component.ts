@@ -37,7 +37,6 @@ export class EmployeesComponent implements OnInit {
   }
 
   Edit(client: any) {
-    console.log(client);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.width = '60%';
@@ -73,7 +72,8 @@ export class EmployeesComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result: { isConfirmed: any }) => {
       if (result.isConfirmed) {
-        this.employeesService.deleteEntity(id).subscribe(() => {
+        this.employeesService.deleteEntity(id).subscribe((s) => {
+          console.log(s);
           Swal.fire('Deleted!', 'employee has been deleted.', 'success');
           // this.
         });

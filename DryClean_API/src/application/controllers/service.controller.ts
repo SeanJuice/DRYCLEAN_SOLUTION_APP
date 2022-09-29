@@ -4,15 +4,15 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Controller, Get, NotFoundException } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { BaseService } from 'src/domain/services/base/base.service';
 import { serviceService } from 'src/domain/services/_service.service';
 import { serviceDTO } from '../dtos/service.dto';
+import { BaseController } from './base/base.controller';
 
 @ApiBearerAuth()
 @ApiTags('service')
 // @UseGuards(JwtAuthGuard)
 @Controller('service')
-export class ServiceController extends BaseService<serviceDTO> {
+export class ServiceController extends BaseController<serviceDTO> {
   constructor(private service: serviceService) {
     super(service);
   }

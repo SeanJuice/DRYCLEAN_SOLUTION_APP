@@ -1,6 +1,12 @@
 import { BaseEntity } from '@domainLayer|entities';
 import { IBaseService } from '@domainLayer|interfaces';
-import { BadGatewayException, Body, Injectable, Param } from '@nestjs/common';
+import {
+  BadGatewayException,
+  Body,
+  ForbiddenException,
+  Injectable,
+  Param,
+} from '@nestjs/common';
 
 @Injectable()
 export class BaseService<T extends BaseEntity> implements IBaseService<T> {
@@ -43,14 +49,14 @@ export class BaseService<T extends BaseEntity> implements IBaseService<T> {
     }
   }
 
-  delete(@Param('id') id: number) {
+  delete(id: number) {
     try {
       this.genericRepository.delete(id);
     } catch (error) {
-      throw new BadGatewayException(error);
+      throw new ForbiddenException(error);
     }
   }
-  update(@Param('id') id: number, @Body() entity: T): Promise<T> {
+  update(id: number, @Body() entity: T): Promise<T> {
     try {
       return new Promise<T>((resolve, reject) => {
         this.genericRepository.update(id, entity);

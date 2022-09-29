@@ -23,14 +23,13 @@ export class EditShopComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.addForm.patchValue({
       ...this.data,
     });
   }
 
   create() {
-    console.log(this.addForm.value, this.addForm.valid);
+    // console.log(this.addForm.value, this.addForm.valid);
     if (this.addForm.valid) {
       this.service
         .updateEntity(this.data.id, this.addForm.value)

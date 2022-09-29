@@ -35,7 +35,6 @@ export class EditEmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.editForm.patchValue({
       ...this.data,
     });

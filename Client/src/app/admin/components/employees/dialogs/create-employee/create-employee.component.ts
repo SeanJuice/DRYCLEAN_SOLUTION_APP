@@ -37,7 +37,7 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit(): void {}
 
   createClient() {
-    console.log(this.addCForm.value, this.addCForm.valid);
+    // console.log(this.addCForm.value, this.addCForm.valid);
     if (this.addCForm.valid) {
       this.service
         .createEntity(this.addCForm.value as CustomerInterface)

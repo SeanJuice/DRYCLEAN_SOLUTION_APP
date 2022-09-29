@@ -12,12 +12,14 @@ export class generalMapper extends AutomapperProfile {
 
   get profile(): MappingProfile {
     return (mapper) => {
+      createMap(mapper, orderDTO, Order);
       createMap(mapper, Order, orderDTO);
-      createMap(mapper, OrderLine, OrderLineDTO);
+      createMap(mapper, OrderLineDTO, OrderLine);
     };
   }
 
   // protected get mappingConfigurations(): MappingConfiguration[] {
+
   //     // the 3 createMap() above will get this `extend()`
   //     return [extend(BaseEntity, BaseDto)];
   // }

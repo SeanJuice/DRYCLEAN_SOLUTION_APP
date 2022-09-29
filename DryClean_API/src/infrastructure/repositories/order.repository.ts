@@ -12,7 +12,7 @@ export class OrderRepository extends BaseRepository<typeof prisma, Order> {
   getUserOrders(_id: number) {
     return prisma.findMany({
       where: {
-        id: _id,
+        userId: _id,
       },
     });
   }
@@ -23,5 +23,32 @@ export class OrderRepository extends BaseRepository<typeof prisma, Order> {
         ...orderline,
       },
     });
+  }
+
+  async Order(orderInfo, PaymentInfo, OrderLines): Promise<Order> {
+    const orderlines = OrderLines.map((line: any) => {
+      return line;
+    });
+    let profile: Order = this.repository.create({
+      data: {
+        ...orderInfo,
+        paymentInformation: {
+          create: {
+            ...PaymentInfo,
+          },
+        },
+        orders: {
+          createMany: {
+            data: orderlines,
+          },
+        },
+      },
+      include: {
+        user: true,
+        paymentInformation: true,
+        orders: true,
+      },
+    });
+    return profile;
   }
 }

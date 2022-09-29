@@ -34,10 +34,8 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.dataService.loginUser(this.loginFormGroup.value).subscribe(
         async (data: loginReponse) => {
-          console.log(data);
           if (data.status == 401) {
             this.isLoading = false;
-            console.log(data);
           } else if (data.status == 424) {
             const { value: code } = await Swal.fire({
               title: 'Enter your varification code. Form your email',

@@ -3,37 +3,38 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { CustomerInterface } from '../../models/Customer.interface';
 import { CustomersService } from '../../services/customers.service';
-import { ShareDataService } from '../../services/shareData.service';
 import { CreateClientComponent } from './dialogs/create-client/create-client.component';
 import { UpdateClientComponent } from './dialogs/update/update-client.component';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css']
+  styleUrls: ['./clients.component.css'],
 })
 export class ClientsComponent implements OnInit {
-
   customers: CustomerInterface[] = [];
 
-  constructor(private clientDialog:MatDialog, private customersService: CustomersService,) {
+  constructor(
+    private clientDialog: MatDialog,
+    private customersService: CustomersService
+  ) {
     this.getCustomers();
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  AddClient()
-  {
+  AddClient() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.width = "80%";
+    dialogConfig.width = '80%';
 
-    const addClientModal =  this.clientDialog.open(CreateClientComponent, dialogConfig);
-    addClientModal.afterClosed().subscribe(()=>{
-       this.ngOnInit();
-      })
+    const addClientModal = this.clientDialog.open(
+      CreateClientComponent,
+      dialogConfig
+    );
+    addClientModal.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   getCustomers() {
@@ -52,18 +53,16 @@ export class ClientsComponent implements OnInit {
       .catch((error) => {});
   }
 
-  edit(client : any)
-  {
-    console.log(client);
+  edit(client: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.width = "60%";
+    dialogConfig.width = '60%';
     dialogConfig.data = client;
 
     const modal = this.clientDialog.open(UpdateClientComponent, dialogConfig);
     modal.afterClosed().subscribe(() => {
       this.ngOnInit();
-    })
+    });
   }
 
   remove(id: string) {
@@ -74,19 +73,14 @@ export class ClientsComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         this.customersService.delete(id).then(() => {
-          Swal.fire(
-            'Deleted!',
-            'Customer has been deleted.',
-            'success'
-          )
+          Swal.fire('Deleted!', 'Customer has been deleted.', 'success');
           // this.
-        })
-
+        });
       }
-    })
+    });
   }
 }

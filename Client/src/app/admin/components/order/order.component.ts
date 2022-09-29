@@ -191,7 +191,9 @@ export class OrderComponent implements OnInit {
         totalAmount: this.getTotalCost(),
         totalAmountWithVAT: this.priceWithVAT,
         VAT: this.VATprice,
-        collectionTime: this.collectionPaymentForm.value.CollectionDate,
+        collectionTime: new Date(
+          this.collectionPaymentForm.value.CollectionDate
+        ),
         invoiceDate: new Date(),
         paymentInformation: {
           paymentType: this.collectionPaymentForm.value.PaymentType,

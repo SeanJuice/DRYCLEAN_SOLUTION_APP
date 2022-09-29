@@ -1,3 +1,4 @@
+import { AutoMap } from '@automapper/classes';
 import { IsDefined, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class OrderLineDTO {
@@ -5,15 +6,18 @@ export class OrderLineDTO {
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   quantity: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   price: number;
   orderId?: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   serviceId: number;
 }
 
@@ -32,30 +36,37 @@ export class orderDTO {
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public invoiceDate: Date;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public collectionTime: Date;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public orderNumber: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public VAT: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public totalAmount: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public totalAmountWithVAT: number;
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   orders?: OrderLineDTO[];
 
   @IsDefined()
@@ -64,5 +75,6 @@ export class orderDTO {
 
   @IsDefined()
   @IsNotEmpty()
+  @AutoMap()
   public userId: number;
 }

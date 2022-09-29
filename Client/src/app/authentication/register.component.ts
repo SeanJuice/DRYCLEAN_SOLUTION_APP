@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
   RegisterUser() {
-    console.log(this.registerFormGroup.valid);
+    // console.log(this.registerFormGroup.valid);
     if (this.registerFormGroup.valid) {
       let userData = {
         name: this.registerFormGroup.controls['name'].value,

@@ -72,6 +72,5 @@ export class SidenavComponent implements OnInit {
     this.sidenavigation = this.sidenavigation.filter(
       (x) => x.role == 2 || x.role == 3
     );
-    console.log(this.sidenavigation);
   }
 }

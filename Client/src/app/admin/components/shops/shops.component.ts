@@ -18,7 +18,6 @@ export class ShopsComponent implements OnInit {
 
   ngOnInit() {
     this.getShops();
-    console.log(this.shops);
   }
 
   getShops() {
@@ -40,7 +39,6 @@ export class ShopsComponent implements OnInit {
     });
   }
   edit(client: any) {
-    console.log(client);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.width = '60%';

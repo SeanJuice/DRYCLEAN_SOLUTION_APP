@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Order } from '../models/order';
 import { CrudService } from './base/base.service';
 
@@ -11,7 +12,11 @@ export class OrderService extends CrudService<Order> {
     super(_httpClient, 'order');
   }
 
+  override createEntity(body: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/createOrder`, body);
+  }
+
   getMyOrders(id: number) {
-    return this._httpClient.get<any[]>(`${this.apiUrl}/${id}`);
+    return this._httpClient.get<any[]>(`${this.apiUrl}/myOrders/${id}`);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 import { OrderService } from '../../services/orders.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { OrderService } from '../../services/orders.service';
 })
 export class OrdersComponent implements OnInit {
   orders: any[] = [];
-  user = JSON.parse(localStorage.getItem('user')!);
+  user = this.authService.getUser();
 
-  constructor(private ordersService: OrderService) {}
+  constructor(
+    private ordersService: OrderService,
+    private authService: TokenStorageService
+  ) {}
 
   ngOnInit() {
     if (this.user?.userRole == 1) {
@@ -18,7 +22,6 @@ export class OrdersComponent implements OnInit {
     } else {
       this.getMyOrders();
     }
-    console.log(this.orders);
   }
 
   getOrders() {
@@ -37,13 +40,8 @@ export class OrdersComponent implements OnInit {
     this.ordersService
       .getMyOrders(this.user.id)
       .subscribe((response: any[]) => {
-        this.orders = [];
-        this.orders = response.map((a) => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          const type = a.type;
-          return { id, type, ...data };
-        });
+        console.log(response);
+        this.orders = Object.values(response);
       });
   }
 }

@@ -1,3 +1,5 @@
+import { AutoMap } from '@automapper/classes';
+
 /**
  * Model User
  *
@@ -47,12 +49,20 @@ export class Customer {
  */
 export class Order {
   id: number;
+  @AutoMap()
   invoiceDate: Date;
+  @AutoMap()
   collectionTime: Date;
+  @AutoMap()
   orderNumber: number;
+
+  @AutoMap()
   VAT: number;
+  @AutoMap()
   totalAmount: number;
+  @AutoMap()
   totalAmountWithVAT: number;
+  @AutoMap()
   userId: number;
 }
 
