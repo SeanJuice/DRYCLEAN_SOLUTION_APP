@@ -1,7 +1,8 @@
-import { orderDTO } from '@applicationLayer|dtos';
+import { acceptOrderDTO, orderDTO } from '@applicationLayer|dtos';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { Order as _Order } from '@domainLayer|entities';
+import { EmailService } from '@domainLayer|services';
 import { OrderRepository } from '@infrastructureLayer|repositories';
 import { Body, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Order, PrismaClient } from '@prisma/client';
@@ -12,6 +13,7 @@ const prisma = new PrismaClient().user;
 export class OrderService extends BaseService<Order> {
   constructor(
     private ordeRepository: OrderRepository,
+    private emailService: EmailService,
     @InjectMapper() private readonly mapper: Mapper,
   ) {
     super(ordeRepository);
@@ -51,4 +53,22 @@ export class OrderService extends BaseService<Order> {
       return new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  AcceptOrder = async (body: acceptOrderDTO, userId: number) => {
+    try {
+      return await this.ordeRepository
+        .update(body.id, {
+          isAccepted: body.isAccepted,
+        })
+        .then(async () => {
+          const user = await prisma.findFirst({
+            where: {
+              id: userId,
+            },
+          });
+        });
+    } catch (e) {
+      return new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  };
 }

@@ -35,3 +35,9 @@ export class Order {
 
   public userId: number;
 }
+
+export class acceptOrder {
+  public id: number;
+  public userId: number;
+  public isAccepted: boolean;
+}

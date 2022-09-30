@@ -7,4 +7,14 @@ export class ShopDTO {
   @IsString()
   @IsNotEmpty()
   readonly name: string;
+
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  readonly location: string;
+
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  readonly managerName: string;
 }

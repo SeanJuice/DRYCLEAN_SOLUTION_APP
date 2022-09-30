@@ -1,9 +1,12 @@
 <div class="container-fluid page">
   <div class="d-flex page__box p-3 mt-2">Order</div>
+
   <div class="page__content shadow p-3 position-relative">
     <div class="container-fluid">
       <h1 class="text-center"><b>Place Customer Order</b></h1>
-
+      <div class="mt-2">
+        <mat-icon>help</mat-icon>
+      </div>
       <br />
       <ng-container *ngIf="isAdmin | async">
         <div class="example-form" style="padding-bottom: 5%">
@@ -29,12 +32,12 @@
         >
           Client Information
         </li>
-        <li class="list-group-item">First Name: {{ customer?.Name }}</li>
-        <li class="list-group-item">Last Name: {{ customer?.Surname }}</li>
+        <li class="list-group-item">First Name: {{ customer?.name }}</li>
+        <li class="list-group-item">Last Name: {{ customer?.surname }}</li>
         <li class="list-group-item">
-          Mobile Number: {{ customer?.MobilePhone }}
+          Mobile Number: {{ customer?.mobilePhone }}
         </li>
-        <li class="list-group-item">Email Address: {{ customer?.Email }}</li>
+        <li class="list-group-item">Email Address: {{ customer?.email }}</li>
       </ul>
 
       <br />
@@ -159,22 +162,13 @@
             <div class="example-large-box mat-elevation-z4">
               <div class="container">
                 <h2>Contact Us</h2>
-                <mat-card>
+
+                <mat-card class="padding-top-md">
                   <div class="row">
-                    <div class="col">
-                      <mat-label>Delivery Information</mat-label>
-                    </div>
-                    <div class="col">
-                      <mat-form-field appearance="fill">
-                        <mat-label>Delivery Information</mat-label>
-                        <select
-                          matNativeControl
-                          formControlName="DeliveryInformation"
-                          required
-                        >
-                          <option value="Default">Default</option>
-                        </select>
-                      </mat-form-field>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="first">Collection date</label>
+                      </div>
                     </div>
                     <div class="col">
                       <mat-form-field
@@ -190,24 +184,8 @@
                         />
                       </mat-form-field>
                     </div>
-                    <div class="col">
-                      <mat-form-field
-                        class="example-full-width"
-                        appearance="fill"
-                      >
-                        <mat-label>Collection Time</mat-label>
-                        <input
-                          matInput
-                          type="time"
-                          formControlName="CollectionTime"
-                          placeholder="Ex. Pizza"
-                        />
-                      </mat-form-field>
-                    </div>
                   </div>
-                </mat-card>
 
-                <mat-card class="padding-top-md">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -347,7 +325,7 @@
                   <div class="row">
                     <!--  col-md-1   -->
                     <div class="col-md-12">
-                      <div class="form-group">
+                      <div class="form-group" *ngIf="this.user?.roleId == 2">
                         <mat-form-field
                           class="example-full-width"
                           appearance="fill"
@@ -361,28 +339,6 @@
                             <option value="CreditCard">Credit Card</option>
                             <option value="Cash">Cash</option>
                           </select>
-                        </mat-form-field>
-                      </div>
-                      <div class="form-group">
-                        <mat-form-field
-                          class="example-full-width"
-                          appearance="fill"
-                        >
-                          <mat-label>Payment date</mat-label>
-                          <mat-form-field appearance="fill">
-                            <mat-label>Choose a date</mat-label>
-                            <input
-                              matInput
-                              formControlName="PaymentDate"
-                              [matDatepicker]="picker"
-                            />
-                            <mat-hint>MM/DD/YYYY</mat-hint>
-                            <mat-datepicker-toggle
-                              matSuffix
-                              [for]="picker"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>
                         </mat-form-field>
                       </div>
                       <div class="form-group">

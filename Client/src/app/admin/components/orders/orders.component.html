@@ -10,22 +10,25 @@
           <th>Order Number</th>
           <th>Invoice Date</th>
           <th>Collection Date</th>
+          <th *ngIf="isAdmin">Status</th>
         </ng-template>
         <ng-template #rows let-row>
-          <td>{{ row.orderNumber | date }}</td>
+          <td>{{ row.orderNumber }}</td>
           <td>{{ row.invoiceDate | date }}</td>
           <td>{{ row.collectionTime | date }}</td>
-          <td>
+          <td *ngIf="isAdmin">
+            {{ row.isAccepted ? "Order Accepted" : "Order Not Accepted" }}
+          </td>
+          <td *ngIf="isAdmin">
             <button
               mat-fab
               color="primary"
-              aria-label=" edit icon"
-              (click)="Edit(row)"
+              aria-label=" delete icon"
+              (click)="viewOrder(row)"
             >
-              <mat-icon>edit</mat-icon>
+              <mat-icon>remove_red_eye</mat-icon>
             </button>
           </td>
-
           <td>
             <button
               mat-fab

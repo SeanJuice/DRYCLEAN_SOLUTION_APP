@@ -11,21 +11,16 @@ import Swal from 'sweetalert2';
 })
 export class CreateEmployeeComponent implements OnInit {
   addCForm = new FormGroup({
-    Name: new FormControl('', Validators.required),
-    Surname: new FormControl('', Validators.required),
-    Company: new FormControl('', Validators.required),
-    EmployeeCode: new FormControl('', Validators.required),
-
-    JobTitle: new FormControl('', Validators.required),
-    Email: new FormControl('', Validators.required),
-    BusinessPhone: new FormControl('', Validators.required),
-    MobilePhone: new FormControl('', Validators.required),
-    FaxNumber: new FormControl('', Validators.required),
-    Address: new FormControl('', Validators.required),
-    PostalCode: new FormControl('', Validators.required),
-    City: new FormControl('', Validators.required),
-    Province: new FormControl('', Validators.required),
-    Notes: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    mobilePhone: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    postalCode: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    province: new FormControl('', Validators.required),
+    notes: new FormControl(''),
+    shopId: new FormControl('', Validators.required),
   });
   client!: any;
   formBuilder: any;

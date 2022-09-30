@@ -6,6 +6,7 @@ model Order {
     VAT                Int
     totalAmount        Int
     totalAmountWithVAT Int
+    isAccepted         Boolean             @default(false)
     orders             OrderLine[]
     paymentInformation PaymentInformation?
     userId             Int

@@ -1,44 +1,59 @@
-
-
 <form class="controls-container" [formGroup]="addForm" (ngSubmit)="create()">
-
   <div mat-dialog-content>
+    <div class="row">
       <div class="row">
-            <div class="row">
-  
-              <!--     COLUMN 1 -->
-  
-              <div class="col-md-12">
-                <h3 mat-dialog-title>Add New Shop</h3><br>
-                <div class="form-group">
-                  <label>Shop Name</label>
-                    <input type="text"  class="form-control" formControlName="ShopName" id="mobile" placeholder="shop name" required />
-                </div>
-               <div class="form-group">
-                  <label>Manager Name</label>
-                    <input type="text"  class="form-control" formControlName="ManagerName" id="mobile" placeholder="Manager" required />
-                </div>
-                <div class="form-group">
-                  <label>Location</label>
-                    <input type="text"  class="form-control" formControlName="Location" id="mobile" placeholder="Location" required />
-                </div>
-  
-                 
-  
-              </div>
-  
-    
-  
-            </div>
-        <!--     SUBMIT -->
-  
+        <!--     COLUMN 1 -->
+
+        <div class="col-md-12">
+          <h3 mat-dialog-title>Add New Shop</h3>
+          <br />
+          <div class="form-group">
+            <label>Shop Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              id="mobile"
+              placeholder="shop name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Manager Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="managerName"
+              id="mobile"
+              placeholder="Manager"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="location"
+              id="mobile"
+              placeholder="location"
+              required
+            />
+          </div>
         </div>
-  
+      </div>
+      <!--     SUBMIT -->
+    </div>
   </div>
   <div mat-dialog-actions>
-          <button type="submit" mat-raised-button color="primary" >Add Shop</button>
-          <button type="button" mat-raised-button color="primary" (click)="onNoClick()" >Cancel</button>
-    </div>
-  
-  </form>
-  
+    <button type="submit" mat-raised-button color="primary">Add Shop</button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="onNoClick()"
+    >
+      Cancel
+    </button>
+  </div>
+</form>

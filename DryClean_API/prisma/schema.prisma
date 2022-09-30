@@ -50,6 +50,7 @@ model Order {
   VAT                Int
   totalAmount        Int
   totalAmountWithVAT Int
+  isAccepted         Boolean             @default(false)
   orders             OrderLine[]         @relation(name: "OrderToOrderLine")
   paymentInformation PaymentInformation? @relation(name: "OrderToPaymentInformation")
   userId             Int
@@ -111,8 +112,9 @@ model Employee {
 }
 
 model Shop {
-  id        Int        @id @default(autoincrement())
-  employees Employee[] @relation(name: "ShopEmployee")
-  name      String
-  location  String
+  id          Int        @id @default(autoincrement())
+  employees   Employee[] @relation(name: "ShopEmployee")
+  name        String
+  location    String
+  managerName String
 }

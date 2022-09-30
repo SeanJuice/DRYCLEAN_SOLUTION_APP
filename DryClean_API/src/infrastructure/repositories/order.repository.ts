@@ -29,6 +29,8 @@ export class OrderRepository extends BaseRepository<typeof prisma, Order> {
     const orderlines = OrderLines.map((line: any) => {
       return line;
     });
+
+    console.log(orderInfo, PaymentInfo, OrderLines);
     let profile: Order = this.repository.create({
       data: {
         ...orderInfo,
@@ -49,6 +51,26 @@ export class OrderRepository extends BaseRepository<typeof prisma, Order> {
         orders: true,
       },
     });
+
     return profile;
+  }
+}
+
+export class OrderLineRepository extends BaseRepository<
+  typeof prisma_orderline,
+  OrderLine
+> {
+  getOrders(id: number) {
+    return prisma_orderline.findMany({
+      where: {
+        orderId: id,
+      },
+      include: {
+        service: true,
+      },
+    });
+  }
+  constructor() {
+    super(prisma_orderline);
   }
 }

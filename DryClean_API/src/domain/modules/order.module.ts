@@ -6,9 +6,10 @@ import { OrderController } from '@applicationLayer|controllers';
 import { OrderRepository } from '@infrastructureLayer|repositories';
 import { Module } from '@nestjs/common';
 import { OrderService } from '../services/order.service';
+import { MailModule } from './mail.module';
 
 @Module({
-  imports: [],
+  imports: [MailModule],
   controllers: [OrderController],
   providers: [OrderService, OrderRepository],
 })

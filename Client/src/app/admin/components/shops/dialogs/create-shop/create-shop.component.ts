@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ShopService } from 'src/app/admin/services/shopservice.service';
+import { ServiceService } from 'src/app/admin/services/_service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,15 +11,15 @@ import Swal from 'sweetalert2';
 })
 export class CreateShopComponent implements OnInit {
   addForm = new FormGroup({
-    ShopName: new FormControl('', Validators.required),
-    ManagerName: new FormControl('', Validators.required),
-    Location: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    managerName: new FormControl('', Validators.required),
   });
   client!: any;
   formBuilder: any;
   constructor(
     private clientDialogRef: MatDialogRef<any>,
-    private service: ShopService
+    private service: ServiceService
   ) {}
 
   ngOnInit(): void {}

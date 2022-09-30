@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Customer Orders</h2>
+<mat-dialog-content class="mat-typography">
+  <table id="order">
+    <tr>
+      <th>Service</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let line of orderLines">
+      <td>{{ line.service.name }}</td>
+      <td>{{ line.quantity }}</td>
+      <td>{{ line.price }}</td>
+    </tr>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="AcceptOrder(true)"
+    color="primary"
+  >
+    Accept Order
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    (click)="AcceptOrder(false)"
+    color="danger"
+  >
+    Reject Order
+  </button>
+</mat-dialog-actions>

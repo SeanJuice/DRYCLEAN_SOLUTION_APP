@@ -28,5 +28,6 @@ import { EmailService } from '../services/_index';
   ],
   controllers: [],
   providers: [EmailService],
+  exports: [EmailService],
 })
 export class MailModule {}

@@ -2,7 +2,10 @@ import { AutoMap } from '@automapper/classes';
 import { IsDefined, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class OrderLineDTO {
-  id?: number;
+  @IsDefined()
+  @IsNotEmpty()
+  @IsOptional()
+  id: number;
 
   @IsDefined()
   @IsNotEmpty()
@@ -77,4 +80,21 @@ export class orderDTO {
   @IsNotEmpty()
   @AutoMap()
   public userId: number;
+}
+
+export class acceptOrderDTO {
+  @IsDefined()
+  @IsNotEmpty()
+  @AutoMap()
+  public id: number;
+
+  @IsDefined()
+  @IsNotEmpty()
+  @AutoMap()
+  public userId: number;
+
+  @IsDefined()
+  @IsNotEmpty()
+  @AutoMap()
+  public isAccepted: boolean;
 }

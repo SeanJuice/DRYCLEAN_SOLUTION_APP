@@ -32,6 +32,8 @@ export class OrderComponent implements OnInit {
   options: any;
   reference = `CleanAP_${Math.ceil(Math.random() * 10e10)}`;
 
+  Orderdata: Order;
+
   public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   displayedColumns = [
     // 'CategoryName',
@@ -63,6 +65,8 @@ export class OrderComponent implements OnInit {
     if (this.user?.roleId == 1) {
       this.isAdmin.next(false);
       console.log(this.user);
+
+      this.myForm.patchValue({ PaymentType: 'CreditCard' });
       this.customer = {
         Name: this.user.name,
         Surname: this.user.surname,
@@ -152,6 +156,7 @@ export class OrderComponent implements OnInit {
       );
     });
   }
+
   getPrice(): void {
     this.myForm.get('quantity').valueChanges.subscribe((selectedValue) => {
       console.log(selectedValue);
@@ -184,7 +189,7 @@ export class OrderComponent implements OnInit {
       this.customer != null &&
       this.rows.length > 0
     ) {
-      const data: Order = {
+      this.Orderdata = {
         userId: this.customer,
         orders: this.rows,
         orderNumber: Math.round(Math.random() * 400),
@@ -197,7 +202,7 @@ export class OrderComponent implements OnInit {
         invoiceDate: new Date(),
         paymentInformation: {
           paymentType: this.collectionPaymentForm.value.PaymentType,
-          paymentDate: this.collectionPaymentForm.value.PaymentDate,
+          paymentDate: new Date(),
           paymentOrderNotes: this.collectionPaymentForm.value.PaymentOrderNotes,
         },
       };
@@ -207,11 +212,16 @@ export class OrderComponent implements OnInit {
         ref: `CleanAP_${Math.ceil(Math.random() * 10e10)}`,
         currency: 'ZAR',
       };
-      if (this.collectionPaymentForm.value.PaymentType == 'CreditCard') {
+      if (this.user?.roleId == 1) {
         document.getElementById('paystack-button').click();
       } else {
         this.orderService.createEntity(data).subscribe((_) => {
-          this.pdfGenerate.generatePDF('open', data.orders, data);
+          this.pdfGenerate.generatePDF(
+            'open',
+            this.Orderdata.orders,
+            this.Orderdata,
+            this.user
+          );
         });
       }
 
@@ -228,9 +238,7 @@ export class OrderComponent implements OnInit {
     });
 
     this.collectionPaymentForm = this.fb.group({
-      DeliveryInformation: ['', Validators.required],
       CollectionDate: ['', Validators.required],
-      CollectionTime: ['', Validators.required],
       CustomerName: [
         `${this.user.name} ${this.user.surname}`,
         Validators.required,
@@ -240,17 +248,21 @@ export class OrderComponent implements OnInit {
       PostalCode: ['5122', Validators.required],
       Region: ['Gauteng', [Validators.required]],
 
-      PaymentType: ['', [Validators.required]],
-      PaymentDate: [Date.now(), [Validators.required]],
+      PaymentType: ['CreditCard'],
       PaymentOrderNotes: ['', [Validators.required]],
     });
   }
 
   paymentDone(ref: any) {
     console.log(ref);
-    // this.orderService.createEntity(ref).subscribe((_) => {
-    //   this.pdfGenerate.generatePDF('open', ref.Orders, ref);
-    // });
+    this.orderService.createEntity(this.Orderdata).subscribe((_) => {
+      this.pdfGenerate.generatePDF(
+        'open',
+        this.Orderdata.orders,
+        this.Orderdata,
+        this.user
+      );
+    });
   }
 
   paymentCancel() {

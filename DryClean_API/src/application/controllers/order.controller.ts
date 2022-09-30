@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { OrderService } from 'src/domain/services/order.service';
-import { orderDTO } from '../dtos/order.dto';
+import { acceptOrderDTO, orderDTO } from '../dtos/order.dto';
 import { BaseController } from './base/base.controller';
 
 @ApiBearerAuth()
@@ -42,5 +42,13 @@ export class OrderController extends BaseController<orderDTO> {
     order: orderDTO,
   ) {
     return await this.service.createOrder(order);
+  }
+  @Post('acceptOrder/:id')
+  async acceptOrrejectOrder(
+    @Body()
+    isAccepted: acceptOrderDTO,
+    @Param('id') id: number,
+  ) {
+    return await this.service.AcceptOrder(isAccepted, id);
   }
 }

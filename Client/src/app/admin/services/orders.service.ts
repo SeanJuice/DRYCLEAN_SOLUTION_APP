@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order } from '../models/order';
+import { acceptOrder, Order } from '../models/order';
 import { CrudService } from './base/base.service';
 
 @Injectable({
@@ -18,5 +18,9 @@ export class OrderService extends CrudService<Order> {
 
   getMyOrders(id: number) {
     return this._httpClient.get<any[]>(`${this.apiUrl}/myOrders/${id}`);
+  }
+
+  acceptRejectOrder(body: acceptOrder): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/createOrder`, body);
   }
 }

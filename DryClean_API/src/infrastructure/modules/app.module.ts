@@ -2,6 +2,7 @@ import { generalMapper } from '@domainLayer|mappers';
 import {
   AuthModule,
   MailModule,
+  OrderLineModule,
   ServiceModule,
   ShopModule,
 } from '@domainLayer|modules';
@@ -16,6 +17,7 @@ import { automapperModule } from './../external-services/automapper.module';
     OrderModule,
     EmployeeModule,
     ShopModule,
+    OrderLineModule,
     AuthModule,
     MailModule,
     ServiceModule,
@@ -24,5 +26,6 @@ import { automapperModule } from './../external-services/automapper.module';
   ],
   controllers: [],
   providers: [MailModule, generalMapper],
+  exports: [MailModule],
 })
 export class AppModule {}

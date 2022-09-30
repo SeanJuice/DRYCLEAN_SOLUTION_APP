@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
-import { ShopService } from '../../services/shopservice.service';
+import { ServiceService } from '../../services/_service.service';
 import { CreateShopComponent } from './dialogs/create-shop/create-shop.component';
 import { EditShopComponent } from './dialogs/edit-shop/edit-shop.component';
 
@@ -14,7 +14,10 @@ export class ShopsComponent implements OnInit {
   shops: any[] = [];
   user = JSON.parse(localStorage.getItem('user')!);
 
-  constructor(private shopsService: ShopService, private Dialog: MatDialog) {}
+  constructor(
+    private shopsService: ServiceService,
+    private Dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.getShops();
@@ -22,10 +25,7 @@ export class ShopsComponent implements OnInit {
 
   getShops() {
     this.shopsService.getAll().subscribe((response) => {
-      this.shops = [];
-      response.forEach((type: any) => {
-        this.shops.push(type);
-      });
+      this.shops = Object.values(response);
     });
   }
   AddShop() {
