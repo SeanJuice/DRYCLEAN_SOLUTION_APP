@@ -91,10 +91,5 @@ export class acceptOrderDTO {
   @IsDefined()
   @IsNotEmpty()
   @AutoMap()
-  public userId: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
   public isAccepted: boolean;
 }

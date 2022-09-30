@@ -38,6 +38,5 @@ export class Order {
 
 export class acceptOrder {
   public id: number;
-  public userId: number;
   public isAccepted: boolean;
 }

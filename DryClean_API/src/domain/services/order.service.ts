@@ -60,12 +60,17 @@ export class OrderService extends BaseService<Order> {
         .update(body.id, {
           isAccepted: body.isAccepted,
         })
-        .then(async () => {
+        .then(async (res) => {
           const user = await prisma.findFirst({
             where: {
               id: userId,
             },
           });
+          if (body.isAccepted) {
+            this.emailService.sendAccptedEmail(user, res.orderNumber);
+          } else {
+            this.emailService.sendRejectEmail(user, res.orderNumber);
+          }
         });
     } catch (e) {
       return new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -20,7 +20,7 @@ export class OrderService extends CrudService<Order> {
     return this._httpClient.get<any[]>(`${this.apiUrl}/myOrders/${id}`);
   }
 
-  acceptRejectOrder(body: acceptOrder): Observable<Order> {
-    return this.http.post<Order>(`${this.apiUrl}/createOrder`, body);
+  acceptRejectOrder(body: acceptOrder, id: number): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/acceptOrder/${id}`, body);
   }
 }

@@ -33,4 +33,32 @@ export class EmailService {
       },
     });
   }
+
+  async sendAccptedEmail(user: User, orderNumber: number) {
+    const { email, name, surname } = user;
+    await this.mailerService.sendMail({
+      to: email,
+      subject: 'Order Accepted',
+      template: 'acceptedOrder',
+      context: {
+        fullName: `${name} ${surname}`,
+        email,
+        orderNumber,
+      },
+    });
+  }
+
+  async sendRejectEmail(user: User, orderNumber: number) {
+    const { email, name, surname } = user;
+    await this.mailerService.sendMail({
+      to: email,
+      subject: 'Order rejected',
+      template: 'rejectedOrder',
+      context: {
+        fullName: `${name} ${surname}`,
+        email,
+        orderNumber,
+      },
+    });
+  }
 }
