@@ -8,7 +8,8 @@
               "./prisma/schemas/order.prisma",
               "./prisma/schemas/service.prisma",
               "./prisma/schemas/employee.prisma",
-              "./prisma/schemas/shop.prisma"
+              "./prisma/schemas/shop.prisma",
+              "./prisma/schemas/paymentType.prisma"
 
 
               
