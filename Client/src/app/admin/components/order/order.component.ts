@@ -132,19 +132,9 @@ export class OrderComponent implements OnInit {
     // .catch((error) => {});
   }
   getCustomers() {
-    this.cutomerService
-      .getList()
-      .then((response) => {
-        response.docs.forEach((type) => {
-          this.customers.push({
-            ...type.data(),
-            id: type.id,
-          } as unknown as CustomerInterface);
-        });
-
-        // console.log(this.services)
-      })
-      .catch((error) => {});
+    this.cutomerService.getCustomers().subscribe((response) => {
+      this.customers = Object.values(response);
+    });
   }
   getCategorySelected(): void {
     this.myForm.get('serviceTypeId').valueChanges.subscribe((selectedValue) => {

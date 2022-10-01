@@ -47,8 +47,11 @@ export class UpdateClientComponent implements OnInit {
     // console.log(this.editClientForm.value, this.editClientForm.valid)
     if (this.editClientForm.valid) {
       this.customerService
-        .update(this.data.id, this.editClientForm.value as CustomerInterface)
-        .then((res: any) => {
+        .updateEntity(
+          this.data.id,
+          this.editClientForm.value as CustomerInterface
+        )
+        .subscribe((res: any) => {
           this.editClientForm.reset();
           this.onClose();
 

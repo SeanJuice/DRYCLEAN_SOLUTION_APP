@@ -43,26 +43,13 @@ export class AuthController {
     return this.authService.registerUser(user);
   }
 
-  // @UseGuards(JwtAuthGuard)
-  @Get('/getAllUsers')
-  async getAllUsers() {
-    Logger.log('Request Made!');
-    const modelsDir = path.resolve(process.cwd());
-    Logger.log(modelsDir);
-    const todo = this.userService.getUserAllUsers();
-    if (!todo) {
+  @Get('/getCustomers')
+  async getCustomers() {
+    const customers = this.userService.getAllCutomers();
+    if (!customers) {
       throw new NotFoundException('Todo does not exist!');
     }
-    return todo;
-  }
-
-  @Get('/numberOfUsers')
-  async numberOfUsers() {
-    const todo = this.userService.count();
-    if (!todo) {
-      throw new NotFoundException('Todo does not exist!');
-    }
-    return todo;
+    return customers;
   }
 
   @Post('/verify')

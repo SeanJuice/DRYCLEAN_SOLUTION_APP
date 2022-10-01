@@ -10,9 +10,9 @@ export class UserService extends BaseService<User> {
     super(userrepository);
   }
 
-  async getUserAllUsers() {
+  async getAllCutomers() {
     let list: createUserDTO[];
-    list = await this.userrepository.getAll();
+    list = await this.userrepository.Customers();
     return <createUserDTO[]>list;
   }
 

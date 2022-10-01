@@ -8,6 +8,14 @@ export class UserRepository extends BaseRepository<typeof prisma, User> {
     super(prisma);
   }
 
+  async Customers() {
+    const users = await prisma.findMany({
+      where: {
+        id: 1,
+      },
+    });
+    return users;
+  }
   async findByLogin(loginDetails: UserLoginDTO) {
     const user = await prisma.findFirst({
       where: {

@@ -1,21 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { CustomerInterface } from '../models/Customer.interface';
 
-import { Service } from '../models/Service.interface';
-import { AbstractRestService } from '../utils/_helper/_gen_crudapi';
+import { CrudService } from './base/base.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class CustomersService  extends AbstractRestService<CustomerInterface>{
+export class CustomersService extends CrudService<CustomerInterface> {
+  constructor(private _httpClient: HttpClient) {
+    super(_httpClient, 'auth');
+  }
 
-
-  constructor(private _httpClient: HttpClient, public override afs: AngularFirestore) {
-
-    super('Customers',afs,'CustomerTypes');
-}
-
-
+  getCustomers() {
+    return this._httpClient.get<any[]>(`${this.apiUrl}/getCustomers`);
+  }
 }

@@ -38,19 +38,16 @@ export class ClientsComponent implements OnInit {
   }
 
   getCustomers() {
-    this.customersService
-      .getList()
-      .then((response) => {
-        this.customers = [];
-        response.docs.forEach((type: any) => {
-          const data: any = {
-            ...type.data(),
-            id: type.id,
-          };
-          this.customers.push(data);
-        });
-      })
-      .catch((error) => {});
+    this.customersService.getAll().subscribe((response) => {
+      this.customers = [];
+      response.forEach((type: any) => {
+        const data: any = {
+          ...type,
+          id: type.id,
+        };
+        this.customers.push(data);
+      });
+    });
   }
 
   edit(client: any) {
@@ -65,7 +62,7 @@ export class ClientsComponent implements OnInit {
     });
   }
 
-  remove(id: string) {
+  remove(id: number) {
     Swal.fire({
       title: 'Are you sure you want to remove this Customer?',
       text: "You won't be able to revert this!",
@@ -76,7 +73,7 @@ export class ClientsComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.customersService.delete(id).then(() => {
+        this.customersService.deleteEntity(id).subscribe(() => {
           Swal.fire('Deleted!', 'Customer has been deleted.', 'success');
           // this.
         });
