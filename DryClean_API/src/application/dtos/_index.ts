@@ -1,5 +1,6 @@
 export * from './code.dto';
 export * from './createUser.dto';
+export * from './customer.dto';
 export * from './employee.dto';
 export * from './order.dto';
 export * from './service.dto';

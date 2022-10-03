@@ -1,5 +1,5 @@
 model Customer {
-    id          Int    @id @default(autoincrement())
+    id          Int     @id @default(autoincrement())
     Name        String
     Surname     String
     Email       String
@@ -8,5 +8,5 @@ model Customer {
     PostalCode  Int
     City        String
     Province    String
-    Notes       String
+    Notes       String?
 }

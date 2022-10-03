@@ -30,7 +30,9 @@ export class CreateEmployeeComponent implements OnInit {
     private clientDialogRef: MatDialogRef<any>,
     private service: EmployeeService,
     private shopsService: ServiceService
-  ) {}
+  ) {
+    this.getShops();
+  }
 
   ngOnInit(): void {}
 

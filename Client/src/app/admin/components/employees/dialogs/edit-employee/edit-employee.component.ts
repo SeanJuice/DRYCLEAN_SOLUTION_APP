@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmployeeService } from 'src/app/admin/services/employee.service';
+import { ServiceService } from 'src/app/admin/services/_service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,27 +13,26 @@ import Swal from 'sweetalert2';
 export class EditEmployeeComponent implements OnInit {
   client!: any;
   editForm = new FormGroup({
-    Name: new FormControl('', Validators.required),
-    Surname: new FormControl('', Validators.required),
-    Company: new FormControl('', Validators.required),
-    EmployeeCode: new FormControl('', Validators.required),
-
-    JobTitle: new FormControl('', Validators.required),
-    Email: new FormControl('', Validators.required),
-    BusinessPhone: new FormControl('', Validators.required),
-    MobilePhone: new FormControl('', Validators.required),
-    FaxNumber: new FormControl('', Validators.required),
-    Address: new FormControl('', Validators.required),
-    PostalCode: new FormControl('', Validators.required),
-    City: new FormControl('', Validators.required),
-    Province: new FormControl('', Validators.required),
-    Notes: new FormControl('', Validators.required),
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    mobilePhone: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    postalCode: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    province: new FormControl('', Validators.required),
+    notes: new FormControl(''),
+    shopId: new FormControl('', Validators.required),
   });
+  shops: any[] = [];
   constructor(
     private clientDialogRef: MatDialogRef<any>,
     private customerService: EmployeeService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private shopsService: ServiceService
+  ) {
+    this.getShops();
+  }
 
   ngOnInit(): void {
     this.editForm.patchValue({
@@ -82,5 +82,15 @@ export class EditEmployeeComponent implements OnInit {
       showConfirmButton: showConfirmButton,
       showCancelButton: showCancelButton,
     });
+  }
+
+  getShops() {
+    this.shopsService.getAll().subscribe((response) => {
+      this.shops = Object.values(response);
+    });
+  }
+
+  onNoClick(): void {
+    this.clientDialogRef.close();
   }
 }

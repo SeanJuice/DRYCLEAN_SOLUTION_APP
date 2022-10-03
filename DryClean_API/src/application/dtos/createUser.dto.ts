@@ -26,9 +26,11 @@ export class createUserDTO {
   @IsOptional()
   readonly isVarrified: boolean;
 
+  @IsDefined()
   @IsNotEmpty()
   @IsString()
   readonly name: string;
+
   @IsDefined()
   @IsNotEmpty()
   @IsString()

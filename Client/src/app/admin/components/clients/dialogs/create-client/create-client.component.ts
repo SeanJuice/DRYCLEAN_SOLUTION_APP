@@ -14,19 +14,13 @@ export class CreateClientComponent implements OnInit {
   addClientForm = new FormGroup({
     Name: new FormControl('', Validators.required),
     Surname: new FormControl('', Validators.required),
-    Company: new FormControl('', Validators.required),
-    WebPage: new FormControl('', Validators.required),
-
-    JobTitle: new FormControl('', Validators.required),
     Email: new FormControl('', Validators.required),
-    BusinessPhone: new FormControl('', Validators.required),
     MobilePhone: new FormControl('', Validators.required),
-    FaxNumber: new FormControl('', Validators.required),
     Address: new FormControl('', Validators.required),
     PostalCode: new FormControl('', Validators.required),
     City: new FormControl('', Validators.required),
     Province: new FormControl('', Validators.required),
-    Notes: new FormControl('', Validators.required),
+    Notes: new FormControl(''),
   });
   client!: any;
   formBuilder: any;

@@ -1,102 +1,152 @@
-
-
-<form class="controls-container" [formGroup]="addClientForm" (ngSubmit)="createClient()">
-
-<div mat-dialog-content>
+<form
+  class="controls-container"
+  [formGroup]="addClientForm"
+  (ngSubmit)="createClient()"
+>
+  <div mat-dialog-content>
     <div class="row">
-          <div class="row">
+      <div class="row">
+        <!--     COLUMN 1 -->
 
-            <!--     COLUMN 1 -->
-
-            <div class="col-md-6">
-              <h3 mat-dialog-title>Customer Details</h3><br>
+        <div class="col-md-6">
+          <h3 mat-dialog-title>Customer Details</h3>
+          <br />
+          <div class="form-group">
+            <label>Name</label>
+            <div class="input-group form-inline">
               <div class="form-group">
-                <label>Company</label>
-                  <input type="text"  class="form-control" formControlName="Company" id="mobile" placeholder="Company name" required />
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Name"
+                  id="fname"
+                  placeholder="First Name"
+                  required
+                />
               </div>
-             <div class="form-group">
-                <label>Web Page</label>
-                  <input type="text"  class="form-control" formControlName="WebPage" id="mobile" placeholder="Web Page" required />
+              <div class="form-group" style="margin-left: 0.5em">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="Surname"
+                  id="lname"
+                  placeholder="Last Name"
+                  required
+                />
               </div>
-              <div class="form-group">
-                <label>Name</label>
-                <div class="input-group form-inline">
-                  <div class="form-group">
-                    <input type="text"  class="form-control" formControlName="Name" id="fname" placeholder="First Name" required/>
-                  </div>
-                  <div class="form-group" style="margin-left: 0.5em">
-                    <input type="text"  class="form-control" formControlName="Surname" id="lname" placeholder="Last Name" required />
-                  </div>
-                </div>
-              </div>
-
-               <div class="form-group">
-                <label>Job Title</label>
-                    <input type="text"  class="form-control" formControlName="JobTitle" id="fname" placeholder="First Name" required/>
-                </div>
-
-              <div class="form-group">
-                <label>E-Mail</label>
-                <input type="email"  class="form-control" formControlName="Email" id="email" placeholder="Enter Email Id" required/>
-              </div>
-
-              <div class="form-group">
-                <label>Business  Phone</label>
-                  <input type="number"  class="form-control" formControlName="BusinessPhone" id="altMobile" placeholder="Enter alternate contact number" required minlength="10" maxlength="10"/>
-              </div>
-                <div class="form-group">
-                <label>Mobile Phone</label>
-                  <input type="number"  class="form-control" formControlName="MobilePhone" id="altMobile" placeholder="Enter alternate contact number"     required minlength="10" maxlength="10" />
-              </div>
-               <div class="form-group">
-                <label>Fax Number</label>
-                  <input type="number"  class="form-control" formControlName="FaxNumber" id="altMobile" placeholder="Enter alternate contact number"     required minlength="10" maxlength="10" />
-              </div>
-
-
             </div>
-
-            <!--     COLUMN 2 -->
-
-            <div class="col-md-6">
-              <h3 mat-dialog-title>Residential Address</h3><br>
-
-              <div class="form-group">
-                <label>Address</label>
-                <textarea  class="form-control" formControlName="Address" id="address" placeholder="Enter Address details" rows="4"  required ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label>Zip/Postal Code</label>
-                <input  class="form-control" formControlName="PostalCode" id="Postalcode" placeholder="Enter your 6 digit Postal code" type="number" minlength = "6" maxlength = "6" required />
-              </div>
-
-              <div class="form-group">
-                <label>City</label>
-                <input type="text"  class="form-control" formControlName="City" id="city" placeholder="Enter City" required />
-              </div>
-
-              <div class="form-group">
-                <label>Province</label>
-                <input type="text"  class="form-control" formControlName="Province" id="province" placeholder="Enter Provicec" required/>
-              </div>
-
-              <div class="form-group">
-                <label>Notes</label><br>
-                          <textarea  class="form-control" formControlName="Notes" id="notes" placeholder="Enter notes" rows="4"  required ></textarea>
-              </div>
-
-            </div>
-
           </div>
-      <!--     SUBMIT -->
 
+          <div class="form-group">
+            <label>E-Mail</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="Email"
+              id="email"
+              placeholder="Enter Email Id"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Mobile Phone</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="MobilePhone"
+              id="altMobile"
+              placeholder="Enter alternate contact number"
+              required
+              minlength="10"
+              maxlength="10"
+            />
+          </div>
+        </div>
+
+        <!--     COLUMN 2 -->
+
+        <div class="col-md-6">
+          <h3 mat-dialog-title>Residential Address</h3>
+          <br />
+
+          <div class="form-group">
+            <label>Address</label>
+            <textarea
+              class="form-control"
+              formControlName="Address"
+              id="address"
+              placeholder="Enter Address details"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Zip/Postal Code</label>
+            <input
+              class="form-control"
+              formControlName="PostalCode"
+              id="Postalcode"
+              placeholder="Enter your 6 digit Postal code"
+              type="number"
+              minlength="6"
+              maxlength="6"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>City</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="City"
+              id="city"
+              placeholder="Enter City"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Province</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="Province"
+              id="province"
+              placeholder="Enter Provicec"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Notes</label><br />
+            <textarea
+              class="form-control"
+              formControlName="Notes"
+              id="notes"
+              placeholder="Enter notes"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+        </div>
       </div>
-
-</div>
-<div mat-dialog-actions>
-        <button type="submit" mat-raised-button color="primary" >Add Customer</button>
-        <button type="button" mat-raised-button color="primary" (click)="onNoClick()" >Cancel</button>
+      <!--     SUBMIT -->
+    </div>
   </div>
-
+  <div mat-dialog-actions>
+    <button type="submit" mat-raised-button color="primary">
+      Add Customer
+    </button>
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="onNoClick()"
+    >
+      Cancel
+    </button>
+  </div>
 </form>
