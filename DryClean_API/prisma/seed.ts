@@ -28,6 +28,22 @@ async function main() {
     });
   }
   if (countType == 0) {
+    //
+
+    const admin = await prisma.user.create({
+      data: {
+        email: 'admin@gmail.com',
+        name: 'Admin',
+        surname: 'A',
+        phoneNumber: 4444,
+        password:
+          '$2b$10$66Zj.Gxu9LAY1N.46HBqNuuTez0BrUh/vFW3.81Duf3ZHK9vdFNwG',
+        roleId: 2,
+        createdAt: new Date('2020-09-26 00:00:00.0000000'),
+        authConfirmToken: 22222,
+        isVarrified: true,
+      },
+    });
     serviceTypes.forEach(async (element) => {
       await prisma.serviceType.create({
         data: {

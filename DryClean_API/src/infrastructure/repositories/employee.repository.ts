@@ -12,9 +12,7 @@ export class EmployeeRepository extends BaseRepository<
 
   async createEmployee(employee: Employee): Promise<Employee> {
     return await prisma.create({
-      data: {
-        ...employee,
-      },
+      data: employee,
       include: {
         shop: true,
       },

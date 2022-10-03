@@ -3,7 +3,7 @@ model Customer {
     Name        String
     Surname     String
     Email       String
-    MobilePhone String
+    MobilePhone Int
     Address     String
     PostalCode  Int
     City        String

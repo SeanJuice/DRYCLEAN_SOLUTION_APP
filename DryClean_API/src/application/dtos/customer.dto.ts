@@ -28,7 +28,7 @@ export class CustomerDTO {
   @IsDefined()
   @IsNotEmpty()
   @IsString()
-  MobilePhone: string;
+  MobilePhone: number;
 
   @IsDefined()
   @IsNotEmpty()
