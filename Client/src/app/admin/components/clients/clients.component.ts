@@ -39,14 +39,7 @@ export class ClientsComponent implements OnInit {
 
   getCustomers() {
     this.customersService.getAll().subscribe((response) => {
-      this.customers = [];
-      response.forEach((type: any) => {
-        const data: any = {
-          ...type,
-          id: type.id,
-        };
-        this.customers.push(data);
-      });
+      this.customers = Object.values(response);
     });
   }
 

@@ -1,19 +1,17 @@
-<div class="text-secondary">
-  <a href="{{ fileUpload.url }}">{{ fileUpload.name }}</a>
-</div>
-<div class="text-red-600">{{ fileUpload?.fileCategory }}</div>
-<div>
+<mat-card>
+  <div class="text-secondary">
+    <a href="{{ fileUpload.url }}">{{ fileUpload.name }}</a>
+  </div>
+  <div class="text-red-600">{{ fileUpload?.fileCategory }}</div>
 
-  <button (click)="deleteFileUpload(fileUpload)" style="float: right"
-  class="bg-red-600 hover:bg-red-600 text-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-  Delete
-</button>
-  <a href="{{ fileUpload.url }}" download>
-    <button style="float: right"
-      class="bg-gray-800 hover:bg-red-600 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-      Download
+  <mat-card-actions align="end">
+    <a href="{{ fileUpload.url }}" download>
+      <button mat-button color="warn">Download</button>
+    </a>
+    <button mat-button color="accent" (click)="deleteFileUpload(fileUpload)">
+      Delete
     </button>
-  </a>
+  </mat-card-actions>
 
-</div>
-<hr class="bg-red">
+  <hr class="bg-red" />
+</mat-card>

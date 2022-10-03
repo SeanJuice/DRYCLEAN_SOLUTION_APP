@@ -1,10 +1,16 @@
-import { IsDefined, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDefined,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class EmployeeDTO {
   @IsDefined()
   @IsNotEmpty()
   @IsOptional()
-  readonly id: number;
+  id: number;
 
   @IsDefined()
   @IsNotEmpty()
@@ -18,7 +24,11 @@ export class EmployeeDTO {
 
   @IsDefined()
   @IsNotEmpty()
-  @IsString()
+  @IsNumber()
+  employeeCode: number;
+
+  @IsDefined()
+  @IsNotEmpty()
   shopId: number;
 
   @IsDefined()
@@ -28,8 +38,8 @@ export class EmployeeDTO {
 
   @IsDefined()
   @IsNotEmpty()
-  @IsString()
-  mobilePhone: string;
+  @IsNumber()
+  mobilePhone: number;
 
   @IsDefined()
   @IsNotEmpty()
@@ -38,8 +48,8 @@ export class EmployeeDTO {
 
   @IsDefined()
   @IsNotEmpty()
-  @IsString()
-  postalCode: string;
+  @IsNumber()
+  postalCode: number;
 
   @IsDefined()
   @IsNotEmpty()

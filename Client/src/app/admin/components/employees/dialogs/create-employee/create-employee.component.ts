@@ -21,6 +21,7 @@ export class CreateEmployeeComponent implements OnInit {
     city: new FormControl('', Validators.required),
     province: new FormControl('', Validators.required),
     notes: new FormControl(''),
+    employeeCode: new FormControl(Math.floor(Math.random() * 31240)),
     shopId: new FormControl('', Validators.required),
   });
   client!: any;
@@ -42,6 +43,7 @@ export class CreateEmployeeComponent implements OnInit {
       this.service
         .createEntity(this.addCForm.value as unknown as CustomerInterface)
         .subscribe((res: any) => {
+          console.log(res);
           this.addCForm.reset();
           this.onClose();
 

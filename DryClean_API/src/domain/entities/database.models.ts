@@ -118,15 +118,13 @@ export class Serviceclass {
  *
  */
 export class Employee {
-  id: number;
   name: string;
   surname: string;
-  employeeCode: string;
-  jobTitle: string;
+  employeeCode: number;
   email: string;
-  mobilePhone: string;
+  mobilePhone: number;
   address: string;
-  postalCode: string;
+  postalCode: number;
   city: string;
   province: string;
   notes: string | null;

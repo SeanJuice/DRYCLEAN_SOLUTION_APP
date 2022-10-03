@@ -30,7 +30,7 @@ model Role {
 }
 
 model Customer {
-  id          Int    @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   Name        String
   Surname     String
   Email       String
@@ -39,7 +39,7 @@ model Customer {
   PostalCode  Int
   City        String
   Province    String
-  Notes       String
+  Notes       String?
 }
 
 model Order {
@@ -98,12 +98,11 @@ model Employee {
   id           Int     @id @default(autoincrement())
   name         String
   surname      String
-  employeeCode String
-  jobTitle     String
+  employeeCode Int
   email        String
-  mobilePhone  String
+  mobilePhone  Int
   address      String
-  postalCode   String
+  postalCode   Int
   city         String
   province     String
   notes        String?
@@ -117,4 +116,10 @@ model Shop {
   name        String
   location    String
   managerName String
+}
+
+model PaymentType {
+  id          Int    @id @default(autoincrement())
+  Name        String
+  Description String
 }

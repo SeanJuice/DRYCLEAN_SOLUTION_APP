@@ -9,4 +9,15 @@ export class EmployeeRepository extends BaseRepository<
   constructor() {
     super(prisma);
   }
+
+  async createEmployee(employee: Employee): Promise<Employee> {
+    return await prisma.create({
+      data: {
+        ...employee,
+      },
+      include: {
+        shop: true,
+      },
+    });
+  }
 }

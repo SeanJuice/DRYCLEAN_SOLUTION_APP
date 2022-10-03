@@ -2,12 +2,11 @@ model Employee {
     id           Int     @id @default(autoincrement())
     name         String
     surname      String
-    employeeCode String
-    jobTitle     String
+    employeeCode Int
     email        String
-    mobilePhone  String
+    mobilePhone  Int
     address      String
-    postalCode   String
+    postalCode   Int
     city         String
     province     String
     notes        String?

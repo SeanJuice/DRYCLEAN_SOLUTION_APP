@@ -9,43 +9,29 @@
         <!--     COLUMN 1 -->
 
         <div class="col-md-6">
-          <h3 mat-dialog-title>Eployee Detail s</h3>
+          <h3 mat-dialog-title>Employee Details</h3>
           <br />
           <div class="form-group">
-            <label>Employee Code</label>
+            <label>Name</label>
             <input
               type="text"
               class="form-control"
-              formControlName="EmployeeCode"
-              id="mobile"
-              placeholder="Code"
+              formControlName="name"
+              id="fname"
+              placeholder="First Name"
               required
             />
           </div>
           <div class="form-group">
-            <label>Name</label>
-            <div class="input-group form-inline">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="name"
-                  id="fname"
-                  placeholder="First Name"
-                  required
-                />
-              </div>
-              <div class="form-group" style="margin-left: 0.5em">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="surname"
-                  id="lname"
-                  placeholder="Last Name"
-                  required
-                />
-              </div>
-            </div>
+            <label>Surname</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="surname"
+              id="lname"
+              placeholder="Last Name"
+              required
+            />
           </div>
 
           <div class="form-group">
@@ -72,6 +58,17 @@
               minlength="10"
               maxlength="10"
             />
+          </div>
+          <div class="form-group">
+            <label>Shop</label><br />
+            <mat-form-field class="form-control">
+              <mat-label>shop worker serves at</mat-label>
+              <mat-select formControlName="shopId">
+                <mat-option *ngFor="let shop of shops" [value]="shop.id">
+                  {{ shop.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
 
@@ -141,18 +138,6 @@
               rows="4"
               required
             ></textarea>
-          </div>
-
-          <div class="form-group">
-            <label>Shop</label><br />
-            <mat-form-field appearance="fill">
-              <mat-label>shop worker serves at</mat-label>
-              <mat-select formControlName="shopId">
-                <mat-option *ngFor="let shop of shops" [value]="shop.id">
-                  {{ shop.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
           </div>
         </div>
       </div>

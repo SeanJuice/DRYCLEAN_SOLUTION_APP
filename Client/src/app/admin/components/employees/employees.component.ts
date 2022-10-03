@@ -50,14 +50,7 @@ export class EmployeesComponent implements OnInit {
 
   getEmployees() {
     this.employeesService.getAll().subscribe((response) => {
-      this.employees = [];
-      response.forEach((type: any) => {
-        const data: any = {
-          ...type.data(),
-          id: type.id,
-        };
-        this.employees.push(data);
-      });
+      this.employees = Object.values(response);
     });
   }
 

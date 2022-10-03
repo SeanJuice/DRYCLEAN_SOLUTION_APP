@@ -3,25 +3,14 @@
   [formGroup]="editForm"
   (ngSubmit)="createClient()"
 >
-  <div mat-dialog-content>
+  <h3>Employee Details</h3>
+  <div mat-dialog-content class="mat-typography">
     <div class="row">
       <div class="row">
         <!--     COLUMN 1 -->
 
         <div class="col-md-6">
-          <h3 mat-dialog-title>Eployee Details</h3>
           <br />
-          <div class="form-group">
-            <label>Employee Code</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="EmployeeCode"
-              id="mobile"
-              placeholder="Code"
-              required
-            />
-          </div>
           <div class="form-group">
             <label>Name</label>
             <div class="input-group form-inline">
@@ -73,6 +62,8 @@
               maxlength="10"
             />
           </div>
+
+          <app-upload-form [userId]="data.id"></app-upload-form>
         </div>
 
         <!--     COLUMN 2 -->
@@ -147,7 +138,7 @@
             <label>Shop</label><br />
             <mat-form-field appearance="fill">
               <mat-label>shop worker serves at</mat-label>
-              <mat-select>
+              <mat-select formControlName="shopId">
                 <mat-option *ngFor="let shop of shops" [value]="shop.id">
                   {{ shop.name }}
                 </mat-option>
@@ -157,8 +148,9 @@
         </div>
       </div>
 
-      <app-upload-form [userId]="data.id"></app-upload-form>
-      <!--     SUBMIT -->
+      <div class="row">
+        <app-upload-list [userId]="data.id"></app-upload-list>
+      </div>
     </div>
   </div>
   <div mat-dialog-actions>

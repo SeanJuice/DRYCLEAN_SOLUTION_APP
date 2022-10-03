@@ -20,7 +20,7 @@ export class UploadListComponent implements OnInit {
   ngOnInit(): void {
     this.uploadService.getFiles(this.userId).subscribe((fileUploads) => {
       this._files$.next(fileUploads);
-      console.log(this.fileUploads);
+      console.log(fileUploads);
     });
   }
 

@@ -1,8 +1,8 @@
-import { orderDTO, OrderLineDTO } from '@applicationLayer|dtos';
+import { EmployeeDTO, orderDTO, OrderLineDTO } from '@applicationLayer|dtos';
 import { createMap, Mapper, MappingProfile } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
-import { Order, OrderLine } from '../entities/database.models';
+import { Employee, Order, OrderLine } from '../entities/database.models';
 
 @Injectable()
 export class generalMapper extends AutomapperProfile {
@@ -15,6 +15,9 @@ export class generalMapper extends AutomapperProfile {
       createMap(mapper, orderDTO, Order);
       createMap(mapper, Order, orderDTO);
       createMap(mapper, OrderLineDTO, OrderLine);
+
+      createMap(mapper, EmployeeDTO, Employee);
+      createMap(mapper, Employee, EmployeeDTO);
     };
   }
 
