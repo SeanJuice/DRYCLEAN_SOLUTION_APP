@@ -64,7 +64,6 @@ export class OrderComponent implements OnInit {
     this.getPrice();
     if (this.user?.roleId == 1) {
       this.isAdmin.next(false);
-      console.log(this.user);
 
       this.myForm.patchValue({ PaymentType: 'CreditCard' });
       this.customer = {

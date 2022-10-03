@@ -38,7 +38,7 @@ export class ClientsComponent implements OnInit {
   }
 
   getCustomers() {
-    this.customersService.getAll().subscribe((response) => {
+    this.customersService.getCustomers().subscribe((response) => {
       this.customers = Object.values(response);
     });
   }
@@ -66,7 +66,7 @@ export class ClientsComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.customersService.deleteEntity(id).subscribe(() => {
+        this.customersService.deleteEntity(id).then(() => {
           Swal.fire('Deleted!', 'Customer has been deleted.', 'success');
           // this.
         });

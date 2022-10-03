@@ -33,7 +33,7 @@ export class EditShopComponent implements OnInit {
     if (this.addForm.valid) {
       this.service
         .updateEntity(this.data.id, this.addForm.value)
-        .subscribe((res: any) => {
+        .then((res: any) => {
           this.addForm.reset();
           this.onClose();
 

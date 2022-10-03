@@ -71,7 +71,7 @@ export class MyServicesComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.shopService.deleteEntity(id).subscribe(() => {
+        this.shopService.deleteEntity(id).then(() => {
           Swal.fire('Deleted!', 'Service has been deleted.', 'success');
           // this.
         });

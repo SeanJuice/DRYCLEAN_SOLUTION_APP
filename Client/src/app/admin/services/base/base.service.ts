@@ -1,14 +1,25 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { DocumentReference } from '@firebase/firestore';
 import { Observable } from 'rxjs';
+import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 import { environment } from 'src/environments/environment';
-
+import { AuditTrailService } from '../auditTrail.service';
+const USER_KEY = 'auth-user';
 export class CrudService<T> {
   protected readonly apiUrl = `${this.baseUrl}/${this.entityname}`;
+  user: any;
   constructor(
     protected readonly http: HttpClient,
     protected readonly entityname: string,
-    private readonly baseUrl: string = environment.BASE_API
-  ) {}
+    private readonly baseUrl: string = environment.BASE_API,
+    private afs?: AuditTrailService,
+    private authService?: TokenStorageService
+  ) {
+    const user = window.sessionStorage.getItem(USER_KEY);
+    if (user) {
+      this.user = JSON.parse(user);
+    }
+  }
 
   getAll(query?: { [key: string]: string }): Observable<T[]> {
     const params = new HttpParams({ fromObject: query });
@@ -16,6 +27,7 @@ export class CrudService<T> {
   }
 
   createEntity(body: T): Observable<T> {
+    this.audit(this.entityname, `creating ${this.entityname}`);
     return this.http.post<T>(this.apiUrl, body);
   }
 
@@ -24,17 +36,42 @@ export class CrudService<T> {
     return this.http.get<T>(url);
   }
 
-  updateEntity(id: number, body: T): Observable<T> {
+  async updateEntity(id: number, body: T): Promise<Observable<T>> {
+    await this.audit(this.entityname, `updating ${this.entityname}`);
     const url = this.entityUrl(id);
     return this.http.put<T>(url, body);
   }
 
-  deleteEntity(id: number): Observable<T> {
+  async deleteEntity(id: number): Promise<Observable<T>> {
+    await this.audit(this.entityname, `delete ${this.entityname}`);
     const url = this.entityUrl(id);
     return this.http.delete<T>(url);
   }
 
   protected entityUrl(id: number): string {
     return [this.apiUrl, id].join('/');
+  }
+
+  async audit(
+    table: string,
+    operation: string
+  ): Promise<DocumentReference<any>> {
+    const user = this.user
+      ? this.user
+      : {
+          name: 'Admin ',
+          surname: 'User',
+        };
+
+    const audit = {
+      Id: user.id,
+      Date: Date.now(),
+      Operation: operation,
+      Table: table,
+      UserName: `${user.name} ${user.surname}`,
+    };
+
+    console.log(audit);
+    return await this.afs.add(audit);
   }
 }

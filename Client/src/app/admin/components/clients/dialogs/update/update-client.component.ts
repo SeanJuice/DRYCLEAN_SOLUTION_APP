@@ -45,7 +45,7 @@ export class UpdateClientComponent implements OnInit {
           this.data.id,
           this.editClientForm.value as CustomerInterface
         )
-        .subscribe((res: any) => {
+        .then((res: any) => {
           this.editClientForm.reset();
           this.onClose();
 

@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
     private tokenStorage: TokenStorageService
   ) {
     this.user = this.tokenStorage.getUser();
-    console.log(this.user);
   }
 
   ngOnInit(): void {}

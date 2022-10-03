@@ -65,7 +65,7 @@ export class EmployeesComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result: { isConfirmed: any }) => {
       if (result.isConfirmed) {
-        this.employeesService.deleteEntity(id).subscribe((s) => {
+        this.employeesService.deleteEntity(id).then((s) => {
           console.log(s);
           Swal.fire('Deleted!', 'employee has been deleted.', 'success');
           // this.

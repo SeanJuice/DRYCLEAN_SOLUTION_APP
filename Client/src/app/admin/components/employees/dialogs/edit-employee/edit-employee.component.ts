@@ -45,7 +45,7 @@ export class EditEmployeeComponent implements OnInit {
     if (this.editForm.valid) {
       this.customerService
         .updateEntity(this.data.id, this.editForm.value)
-        .subscribe((res: any) => {
+        .then((res: any) => {
           this.editForm.reset();
           this.onClose();
 

@@ -10,7 +10,6 @@ export class User {
   name: string | null;
   surname: string;
   phoneNumber: number;
-  password: string;
   roleId: number;
   createdAt: Date;
   authConfirmToken: number | null;

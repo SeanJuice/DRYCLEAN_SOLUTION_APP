@@ -1,0 +1,37 @@
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 mt-2">Audit Trail</div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="container-fluid">
+      <h1 class="text-center"><b></b></h1>
+      <br />
+
+      <p>
+        <mat-toolbar>
+          <button
+            mat-button
+            style="background-color: rgb(3, 67, 67); color: white"
+            (click)="exportexcel()"
+          >
+            <img src="../../../../assets/excel.png" width="15" />Export to Excel
+          </button>
+        </mat-toolbar>
+      </p>
+      <app-table [data]="data" class="table table-striped">
+        <ng-template #headers>
+          <th>{{ AuditTableColumns[0] }}</th>
+          <th>{{ AuditTableColumns[1] }}</th>
+          <th>{{ AuditTableColumns[2] }}</th>
+          <th>{{ AuditTableColumns[3] }}</th>
+        </ng-template>
+        <ng-template #rows let-row>
+          <td>{{ row.UserName }}</td>
+          <td>{{ row.Operation }}</td>
+          <td>{{ row.Table }}</td>
+          <td>{{ data.Date | date: "MMM dd, y" }}</td>
+          <td></td>
+          <td></td>
+        </ng-template>
+      </app-table>
+    </div>
+  </div>
+</div>

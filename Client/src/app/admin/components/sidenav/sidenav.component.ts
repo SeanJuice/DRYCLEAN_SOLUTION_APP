@@ -62,6 +62,12 @@ export class SidenavComponent implements OnInit {
       name: 'Dashboard',
       role: 3,
     },
+    {
+      link: 'auditTrail',
+      icon: 'chrome_reader_mode',
+      name: 'Audit Trail',
+      role: 3,
+    },
   ];
   constructor(private tokenStorage: TokenStorageService) {}
 
