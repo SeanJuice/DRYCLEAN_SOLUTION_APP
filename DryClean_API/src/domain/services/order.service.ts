@@ -31,6 +31,11 @@ export class OrderService extends BaseService<Order> {
   //
   async createOrder(@Body() order: orderDTO) {
     let _order = order;
+    const user = await prisma.findFirst({
+      where: {
+        id: order.userId,
+      },
+    });
     this.mapper.mapAsync(order, orderDTO, _Order).then(
       (res: any) => {
         _order = res;
@@ -39,8 +44,9 @@ export class OrderService extends BaseService<Order> {
         console.log('error====>', error);
       },
     );
+
     try {
-      return this.mapper.mapAsync(
+      const ordr = this.mapper.mapAsync(
         await this.ordeRepository.Order(
           order,
           _order.paymentInformation,
@@ -49,6 +55,13 @@ export class OrderService extends BaseService<Order> {
         _Order,
         orderDTO,
       );
+      if ((await ordr).id) {
+        this.emailService.adminOrderNotification(
+          user,
+          (await ordr).orderNumber,
+        );
+      }
+      return ordr;
     } catch (e) {
       return new HttpException(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }

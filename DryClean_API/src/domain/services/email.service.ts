@@ -61,4 +61,20 @@ export class EmailService {
       },
     });
   }
+
+  //
+
+  async adminOrderNotification(user: User, orderNumber: number) {
+    const { email, name, surname } = user;
+    await this.mailerService.sendMail({
+      to: 'info@drycleancity.co.za',
+      subject: 'Order Notification!',
+      template: 'orderMadeNotification',
+      context: {
+        fullName: `${name} ${surname}`,
+        emailAddress: email,
+        orderNumber,
+      },
+    });
+  }
 }

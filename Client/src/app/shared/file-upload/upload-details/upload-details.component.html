@@ -1,0 +1,19 @@
+<div class="text-secondary">
+  <a href="{{ fileUpload.url }}">{{ fileUpload.name }}</a>
+</div>
+<div class="text-red-600">{{ fileUpload?.fileCategory }}</div>
+<div>
+
+  <button (click)="deleteFileUpload(fileUpload)" style="float: right"
+  class="bg-red-600 hover:bg-red-600 text-white  font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+  Delete
+</button>
+  <a href="{{ fileUpload.url }}" download>
+    <button style="float: right"
+      class="bg-gray-800 hover:bg-red-600 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+      Download
+    </button>
+  </a>
+
+</div>
+<hr class="bg-red">

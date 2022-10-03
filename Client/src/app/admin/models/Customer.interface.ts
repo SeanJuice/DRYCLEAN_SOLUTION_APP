@@ -4,19 +4,25 @@ export interface CustomerStatus {
 }
 
 export interface CustomerInterface {
-  id?: number;
-  Name: string;
-  Surname: string;
-  Company: string;
-  WebPage: string;
-  JobTitle: string;
-  Email: string;
-  BusinessPhone: string;
-  MobilePhone: string;
-  FaxNumber: string;
-  Address: string;
-  PostalCode: string;
-  City: string;
-  Province: string;
-  Notes: string;
+  readonly id?: number;
+
+  name: string;
+
+  surname: string;
+
+  shopId: number;
+
+  email: string;
+
+  mobilePhone: string;
+
+  address: string;
+
+  postalCode: string;
+
+  city: string;
+
+  province: string;
+
+  notes: string;
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CustomerInterface } from 'src/app/admin/models/Customer.interface';
 import { EmployeeService } from 'src/app/admin/services/employee.service';
+import { ServiceService } from 'src/app/admin/services/_service.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-create-employee',
@@ -13,7 +14,7 @@ export class CreateEmployeeComponent implements OnInit {
   addCForm = new FormGroup({
     name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     mobilePhone: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     postalCode: new FormControl('', Validators.required),
@@ -24,9 +25,11 @@ export class CreateEmployeeComponent implements OnInit {
   });
   client!: any;
   formBuilder: any;
+  shops: any[] = [];
   constructor(
     private clientDialogRef: MatDialogRef<any>,
-    private service: EmployeeService
+    private service: EmployeeService,
+    private shopsService: ServiceService
   ) {}
 
   ngOnInit(): void {}
@@ -35,7 +38,7 @@ export class CreateEmployeeComponent implements OnInit {
     // console.log(this.addCForm.value, this.addCForm.valid);
     if (this.addCForm.valid) {
       this.service
-        .createEntity(this.addCForm.value as CustomerInterface)
+        .createEntity(this.addCForm.value as unknown as CustomerInterface)
         .subscribe((res: any) => {
           this.addCForm.reset();
           this.onClose();
@@ -76,5 +79,11 @@ export class CreateEmployeeComponent implements OnInit {
 
   onNoClick(): void {
     this.clientDialogRef.close();
+  }
+
+  getShops() {
+    this.shopsService.getAll().subscribe((response) => {
+      this.shops = Object.values(response);
+    });
   }
 }

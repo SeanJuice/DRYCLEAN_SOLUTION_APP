@@ -1,24 +1,31 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material.module';
-import { NgChartsModule } from 'ng2-charts';
-import { TableComponent } from './ui/table/table.component';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchFilterPipe } from './pipe/pipe';
-import { ToastrModule } from 'ngx-toastr';
-import { FilterByKeyPipeModule } from '../admin/utils/_pipes/filter-by-key-pipe.module';
-import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { SearchDropdown } from './ui/search-dropdown/search-dropdown.component';
+import { NgChartsModule } from 'ng2-charts';
+import {
+  CurrencyMaskConfig,
+  CurrencyMaskModule,
+  CURRENCY_MASK_CONFIG,
+} from 'ng2-currency-mask';
+import { ToastrModule } from 'ngx-toastr';
 import { ShareDataService } from '../admin/services/shareData.service';
+import { FilterByKeyPipeModule } from '../admin/utils/_pipes/filter-by-key-pipe.module';
+import { UploadDetailsComponent } from './file-upload/upload-details/upload-details.component';
+import { UploadFormComponent } from './file-upload/upload-form/upload-form.component';
+import { UploadListComponent } from './file-upload/upload-list/upload-list.component';
+import { MaterialModule } from './material.module';
+import { SearchFilterPipe } from './pipe/pipe';
+import { SearchDropdown } from './ui/search-dropdown/search-dropdown.component';
+import { TableComponent } from './ui/table/table.component';
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: "right",
+  align: 'right',
   allowNegative: true,
-  decimal: ",",
+  decimal: ',',
   precision: 2,
-  prefix: "R ",
-  suffix: "",
-  thousands: "."
+  prefix: 'R ',
+  suffix: '',
+  thousands: '.',
 };
 @NgModule({
   imports: [
@@ -30,7 +37,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ToastrModule.forRoot(),
     FilterByKeyPipeModule,
     CurrencyMaskModule,
-    NgxDatatableModule
+    NgxDatatableModule,
   ],
   exports: [
     CurrencyMaskModule,
@@ -41,16 +48,22 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ToastrModule,
     FilterByKeyPipeModule,
     NgxDatatableModule,
-    SearchDropdown
+    SearchDropdown,
+    UploadFormComponent,
+    UploadListComponent,
+    UploadDetailsComponent,
   ],
   declarations: [
     TableComponent,
     SearchFilterPipe,
-    SearchDropdown
+    SearchDropdown,
+    UploadFormComponent,
+    UploadListComponent,
+    UploadDetailsComponent,
   ],
   providers: [
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
-    ShareDataService
-],
+    ShareDataService,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
