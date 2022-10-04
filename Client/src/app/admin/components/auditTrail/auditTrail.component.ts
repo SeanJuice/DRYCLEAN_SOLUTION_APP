@@ -34,19 +34,13 @@ export class AuditTrailComponent implements OnInit {
   }
 
   getAllProducts(): void {
-    this.AuditTrailervice.getList()
-      .then((response: any) => {
-        this.data = [];
-        response.docs.forEach((type: any) => {
-          this.data.push({ ...type.data(), Id: type.id });
-        });
-        console.log(this.data);
-      })
-      .then((n: any) => {
-        this.DataSource = new MatTableDataSource(this.data);
-        this.DataSource.paginator = this.paginator;
-      })
-      .catch((error: any) => {});
+    this.AuditTrailervice.getAll().subscribe((response: any) => {
+      this.data = [];
+      this.data = Object.values(response);
+      console.log(response);
+      this.DataSource = new MatTableDataSource(this.data);
+      this.DataSource.paginator = this.paginator;
+    });
   }
 
   // eslint-disable-next-line @angular-eslint/use-lifecycle-interface

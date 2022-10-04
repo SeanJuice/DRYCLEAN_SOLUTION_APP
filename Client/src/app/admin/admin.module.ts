@@ -42,6 +42,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuditTrailModule } from './components/auditTrail/auditTrail.module';
 import { CreateShopComponent } from './components/shops/dialogs/create-shop/create-shop.component';
 import { EditShopComponent } from './components/shops/dialogs/edit-shop/edit-shop.component';
+
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // this includes the core NgIdleModule but includes keepalive providers for easy wireup
 @NgModule({
   imports: [
     RouterModule,
@@ -69,6 +71,7 @@ import { EditShopComponent } from './components/shops/dialogs/edit-shop/edit-sho
     OrdersModule,
     NgxSpinnerModule,
     AuditTrailModule,
+    NgIdleKeepaliveModule.forRoot(),
   ],
   declarations: [
     HomeComponent,

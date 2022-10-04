@@ -1,0 +1,14 @@
+model AuditTrail {
+    id        Int      @id @default(autoincrement())
+    Date      DateTime
+    Table     String
+    Operation String
+
+    userId Int
+    user   User @relation(fields: [userId], references: [id])
+}
+
+model User {
+    id          Int          @id
+    auditTrails AuditTrail[]
+}

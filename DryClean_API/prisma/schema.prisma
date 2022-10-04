@@ -9,18 +9,19 @@ generator client {
 }
 
 model User {
-  id               Int      @id @default(autoincrement())
-  email            String   @unique
+  id               Int          @id @default(autoincrement())
+  email            String       @unique
   name             String?
   surname          String
   phoneNumber      Int
   password         String
-  role             Role?    @relation(name: "RoleToUser", fields: [roleId], references: [id])
-  roleId           Int      @default(1)
-  createdAt        DateTime @default(now())
+  role             Role?        @relation(name: "RoleToUser", fields: [roleId], references: [id])
+  roleId           Int          @default(1)
+  createdAt        DateTime     @default(now())
   authConfirmToken Int?
-  isVarrified      Boolean? @default(false)
-  orders           Order[]  @relation(name: "OrderToUser")
+  isVarrified      Boolean?     @default(false)
+  orders           Order[]      @relation(name: "OrderToUser")
+  auditTrails      AuditTrail[] @relation(name: "AuditTrailToUser")
 }
 
 model Role {
@@ -122,4 +123,13 @@ model PaymentType {
   id          Int    @id @default(autoincrement())
   Name        String
   Description String
+}
+
+model AuditTrail {
+  id        Int      @id @default(autoincrement())
+  Date      DateTime
+  Table     String
+  Operation String
+  userId    Int
+  user      User     @relation(name: "AuditTrailToUser", fields: [userId], references: [id])
 }

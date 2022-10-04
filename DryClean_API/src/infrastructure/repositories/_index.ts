@@ -1,3 +1,4 @@
+export * from './auditTrail.repository';
 export * from './customer.repository';
 export * from './employee.repository';
 export * from './order.repository';

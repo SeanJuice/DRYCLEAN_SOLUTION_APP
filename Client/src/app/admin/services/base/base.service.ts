@@ -1,5 +1,4 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { DocumentReference } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 import { TokenStorageService } from 'src/app/authentication/services/tokeStorage.service';
 import { environment } from 'src/environments/environment';
@@ -52,10 +51,7 @@ export class CrudService<T> {
     return [this.apiUrl, id].join('/');
   }
 
-  async audit(
-    table: string,
-    operation: string
-  ): Promise<DocumentReference<any>> {
+  async audit(table: string, operation: string): Promise<any> {
     const user = this.user
       ? this.user
       : {
@@ -64,14 +60,13 @@ export class CrudService<T> {
         };
 
     const audit = {
-      Id: user.id,
       Date: Date.now(),
       Operation: operation,
       Table: table,
-      UserName: `${user.name} ${user.surname}`,
+      userId: user.id,
     };
 
     console.log(audit);
-    return await this.afs.add(audit);
+    return this.afs.createEntity(audit);
   }
 }
