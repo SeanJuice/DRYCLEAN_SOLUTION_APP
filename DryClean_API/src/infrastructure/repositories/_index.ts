@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 export * from './auditTrail.repository';
 export * from './customer.repository';
 export * from './employee.repository';

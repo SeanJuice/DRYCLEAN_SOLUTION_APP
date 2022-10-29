@@ -1,3 +1,4 @@
+import { OrderLineService } from '@domainLayer|services';
 import {
   Controller,
   Get,
@@ -6,8 +7,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { OrderLineService } from 'src/domain/services/orderLine.service';
-import { OrderLineDTO } from '../dtos/order.dto';
+import { OrderLineDTO } from '../dtos/orderLine.dto';
 import { BaseController } from './base/base.controller';
 
 @ApiBearerAuth()

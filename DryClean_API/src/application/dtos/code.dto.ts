@@ -1,6 +1,6 @@
 import { IsDefined, IsNotEmpty } from 'class-validator';
 
-export class CodeDTO {
+export default class CodeDTO {
   @IsNotEmpty()
   @IsDefined()
   code: number;

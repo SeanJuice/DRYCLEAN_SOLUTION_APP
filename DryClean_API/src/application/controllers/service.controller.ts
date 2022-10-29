@@ -2,10 +2,10 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
+import { serviceDTO } from '@applicationLayer|dtos';
 import { Controller, Get, NotFoundException } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { serviceService } from 'src/domain/services/_service.service';
-import { serviceDTO } from '../dtos/service.dto';
 import { BaseController } from './base/base.controller';
 
 @ApiBearerAuth()

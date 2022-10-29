@@ -3,9 +3,9 @@ https://docs.nestjs.com/modules
 */
 
 import { ShopController } from '@applicationLayer|controllers';
+import { ShopService } from '@domainLayer|services';
 import { ShopRepository } from '@infrastructureLayer|repositories';
 import { Module } from '@nestjs/common';
-import { ShopService } from '../services/shop.service';
 
 @Module({
   imports: [],

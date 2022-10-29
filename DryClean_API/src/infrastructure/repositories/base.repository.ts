@@ -6,7 +6,7 @@ export class BaseRepository<T, K> {
   }
 
   async create(data: any): Promise<K> {
-    let profile: K = this.repository.create({
+    const profile: K = this.repository.create({
       data: {
         ...data,
       },
@@ -15,7 +15,7 @@ export class BaseRepository<T, K> {
   }
 
   async createMany(data: K[]) {
-    await new Promise<void>((resolve) => {
+    await new Promise<void>(() => {
       this.repository.createMany({ data });
     });
   }

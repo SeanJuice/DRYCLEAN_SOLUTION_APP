@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /*
 https://docs.nestjs.com/modules
 */

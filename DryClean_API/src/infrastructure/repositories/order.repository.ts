@@ -1,6 +1,10 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable camelcase */
+// eslint-disable-next-line import/no-unresolved
 import { OrderLine } from '@domainLayer|entities';
 import { Order, PrismaClient } from '@prisma/client';
 import { BaseRepository } from './base.repository';
+
 const prisma = new PrismaClient().order;
 const prisma_orderline = new PrismaClient().orderLine;
 
@@ -26,12 +30,10 @@ export class OrderRepository extends BaseRepository<typeof prisma, Order> {
   }
 
   async Order(orderInfo, PaymentInfo, OrderLines): Promise<Order> {
-    const orderlines = OrderLines.map((line: any) => {
-      return line;
-    });
+    const orderlines = OrderLines.map((line: any) => line);
 
-    console.log(orderInfo, PaymentInfo, OrderLines);
-    let profile: Order = this.repository.create({
+    // console.log(orderInfo, PaymentInfo, OrderLines);
+    const profile: Order = this.repository.create({
       data: {
         ...orderInfo,
         paymentInformation: {
@@ -70,6 +72,7 @@ export class OrderLineRepository extends BaseRepository<
       },
     });
   }
+
   constructor() {
     super(prisma_orderline);
   }

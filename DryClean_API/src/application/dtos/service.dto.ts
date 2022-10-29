@@ -16,6 +16,7 @@ export class serviceDTO {
   @IsNotEmpty()
   @IsString()
   readonly name: string;
+
   @IsDefined()
   @IsNotEmpty()
   @IsString()
@@ -30,6 +31,7 @@ export class serviceDTO {
   @IsNotEmpty()
   @IsNumber()
   readonly serviceTypeId: number;
+
   @IsDefined()
   @IsNotEmpty()
   @IsString()

@@ -1,3 +1,6 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
 import { acceptOrderDTO, orderDTO } from '@applicationLayer|dtos';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
@@ -7,6 +10,7 @@ import { OrderRepository } from '@infrastructureLayer|repositories';
 import { Body, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Order, PrismaClient } from '@prisma/client';
 import { BaseService } from './base/base.service';
+
 const prisma = new PrismaClient().user;
 // import '../mappers/general.mapper';
 @Injectable()
@@ -40,8 +44,8 @@ export class OrderService extends BaseService<Order> {
       (res: any) => {
         _order = res;
       },
-      (error) => {
-        console.log('error====>', error);
+      () => {
+        // console.log('error====>', error);
       },
     );
 

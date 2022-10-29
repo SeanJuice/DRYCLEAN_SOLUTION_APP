@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export interface IBaseService<T> {
   getAll(): Promise<T[]>;
   findById(id: number): Promise<T>;

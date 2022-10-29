@@ -1,36 +1,7 @@
 import { AutoMap } from '@automapper/classes';
 import { IsDefined, IsNotEmpty, IsOptional } from 'class-validator';
-
-export class OrderLineDTO {
-  @IsDefined()
-  @IsNotEmpty()
-  @IsOptional()
-  id: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
-  quantity: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
-  price: number;
-  orderId?: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
-  serviceId: number;
-}
-
-export class PaymentInformationDTO {
-  id?: number;
-  paymentDate: Date;
-  paymentType: number;
-  paymentOrderNotes?: string;
-  orderId: number;
-}
+import { OrderLineDTO } from './orderLine.dto';
+import { PaymentInformationDTO } from './PaymentInformation.dto';
 
 export class orderDTO {
   @IsDefined()
@@ -80,16 +51,4 @@ export class orderDTO {
   @IsNotEmpty()
   @AutoMap()
   public userId: number;
-}
-
-export class acceptOrderDTO {
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
-  public id: number;
-
-  @IsDefined()
-  @IsNotEmpty()
-  @AutoMap()
-  public isAccepted: boolean;
 }

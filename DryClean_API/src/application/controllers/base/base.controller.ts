@@ -1,3 +1,9 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint-disable no-useless-constructor */
+// eslint-disable-next-line object-curly-newline, import/no-unresolved
 import { BaseEntity } from '@domainLayer|entities';
 import { Body, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';

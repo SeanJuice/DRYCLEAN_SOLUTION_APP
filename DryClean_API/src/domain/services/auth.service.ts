@@ -1,11 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-empty-function */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-undef */
+/* eslint-disable no-shadow */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-unresolved */
 import { UserLoginDTO } from '@applicationLayer|dtos';
+import { loginReponse } from '@domainLayer|interfaces';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { UserRepository } from 'src/infrastructure/repositories/_index';
 import { JwtPayload } from '../interfaces/jwtPayload';
-import { loginReponse } from '../interfaces/loginResponse';
 import { EmailService } from './email.service';
 
 @Injectable()
@@ -94,11 +103,11 @@ export class AuthService {
   }
 
   async count() {
-    let num = await await this.userRepository.count();
+    const num = await await this.userRepository.count();
     return num;
   }
 
-  //TODO: Move these helper functions to a utils folder
+  // TODO: Move these helper functions to a utils folder
   private async verifyPassword(
     plainTextPassword: string,
     hashedPassword: string,
@@ -126,6 +135,7 @@ export class AuthService {
     // }
     return false;
   }
+
   async validateUser(payload: JwtPayload): Promise<User> {
     const user: User = await this.userRepository.findByEmail(payload.email);
     if (!user) {
@@ -134,7 +144,7 @@ export class AuthService {
     return user;
   }
 
-  private _createToken(User): any {
+  private _createToken(User: any): any {
     const expiresIn = process.env.EXPIRESIN;
 
     User.password = undefined;

@@ -6,7 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CustomerDTO {
+export default class CustomerDTO {
   id: number;
 
   @IsDefined()

@@ -1,6 +1,6 @@
 import { IsDefined, IsNotEmpty } from 'class-validator';
 
-export class AuditTrailDTO {
+export default class AuditTrailDTO {
   id: number;
 
   @IsDefined()

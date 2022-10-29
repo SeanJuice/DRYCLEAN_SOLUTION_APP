@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-constructor */
+/* eslint-disable import/no-unresolved */
 import {
   createUserDTO,
   EmployeeDTO,

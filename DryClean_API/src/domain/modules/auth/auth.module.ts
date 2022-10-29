@@ -1,6 +1,9 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/no-unresolved */
 import { AuthController } from '@applicationLayer|controllers';
 import { Module } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'src/domain/helpers';
@@ -13,6 +16,7 @@ import {
 } from 'src/domain/services/_index';
 import { UserRepository } from 'src/infrastructure/repositories/_index';
 import { MailModule } from '../mail.module';
+
 @Module({
   imports: [
     MailModule,

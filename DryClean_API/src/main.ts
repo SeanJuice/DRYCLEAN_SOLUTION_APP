@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -11,7 +12,7 @@ async function bootstrap() {
   app.enableCors();
   app.setGlobalPrefix('api');
 
-  //Swagger setup.
+  // Swagger setup.
   const options = new DocumentBuilder()
     .setTitle('Dry Clean')
     .setDescription('API For Dry Clean Application')
@@ -37,7 +38,7 @@ async function bootstrap() {
        * Strip away all none-object existing properties
        */
       whitelist: true,
-      /***
+      /** *
        * Transform input objects to their corresponding DTO objects
        */
       transform: true,

@@ -9,7 +9,7 @@ async function main() {
     { name: 'Laundry', description: 'Laundry Services' },
     { name: 'Tailoring', description: 'Tailoring Services' },
   ];
-  //await prisma.role.deleteMany();
+  // await prisma.role.deleteMany();
 
   console.log('Seeding...');
   const count = await prisma.role.count();

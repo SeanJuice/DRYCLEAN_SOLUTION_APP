@@ -15,13 +15,11 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class DataInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log('Before...');
+    // console.log('Before...');
     return next.handle().pipe(
-      map((data) => {
-        return {
-          ...instanceToPlain(data),
-        };
-      }),
+      map((data) => ({
+        ...instanceToPlain(data),
+      })),
     );
   }
 }

@@ -1,11 +1,12 @@
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 
 @Injectable()
 export class EmailService {
-  private code;
-
   constructor(private mailerService: MailerService) {}
 
   async sendConfirmationEmail(user: User, code: number) {
@@ -16,7 +17,7 @@ export class EmailService {
       template: 'confirm',
       context: {
         fullName: `${name} ${surname}`,
-        code: code,
+        code,
       },
     });
   }

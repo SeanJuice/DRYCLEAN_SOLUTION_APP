@@ -1,6 +1,9 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable class-methods-use-this */
 import { UserLoginDTO } from '@applicationLayer|dtos';
 import { PrismaClient, User } from '@prisma/client';
 import { BaseRepository } from './base.repository';
+
 const prisma = new PrismaClient().user;
 
 export class UserRepository extends BaseRepository<typeof prisma, User> {
@@ -16,6 +19,7 @@ export class UserRepository extends BaseRepository<typeof prisma, User> {
     });
     return users;
   }
+
   async findByLogin(loginDetails: UserLoginDTO) {
     const user = await prisma.findFirst({
       where: {

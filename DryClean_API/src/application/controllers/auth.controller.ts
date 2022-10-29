@@ -1,3 +1,8 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-empty-function */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-constructor */
+import { createUserDTO, UserLoginDTO } from '@applicationLayer|dtos';
 import {
   Body,
   Controller,
@@ -11,12 +16,10 @@ import {
   // ApiBearerAuth,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthService, UserService } from 'src/domain/services/_index';
-import { CodeDTO } from '../dtos/code.dto';
-import { createUserDTO } from '../dtos/createUser.dto';
-import { UserLoginDTO } from '../dtos/userLogin.dto';
+import { AuthService, UserService } from '../../domain/services/_index';
+import CodeDTO from '../dtos/code.dto';
 import { UserExistException } from '../exceptions/userExisit.exception';
-const path = require('path');
+
 @ApiBearerAuth()
 @ApiTags('auth')
 @Controller('auth')

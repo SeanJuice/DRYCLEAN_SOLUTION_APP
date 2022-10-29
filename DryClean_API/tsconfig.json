@@ -12,10 +12,10 @@
     "baseUrl": "./",
     "paths": {
       "@applicationLayer|controllers": ["src/application/controllers/_index"],
-      "@applicationLayer|dtos": ["src/application/dtos/_index"],
+      "@applicationLayer|dtos": ["./src/application/dtos/_index"],
       // "@applicationlayer|controllers/*": ["src/application/****/*"]
 
-      "@domainLayer|entities": ["src/domain/entities/_index"],
+      "@domainLayer|entities": ["./src/domain/entities/_index"],
       "@domainLayer|interfaces": ["src/domain/interfaces/_index"],
       "@domainLayer|enums": ["src/domain/enums/_index"],
       "@domainLayer|helpers": ["src/domain/helpers/_index"],
@@ -27,9 +27,7 @@
 
       "@infrastructureLayer|config": ["src/infrastructure/config/_index"],
       "@infrastructureLayer|database": ["src/infrastructure/database/_index"],
-      "@infrastructureLayer|repositories": [
-        "src/infrastructure/repositories/_index"
-      ],
+      "@infrastructureLayer|repositories": ["src/infrastructure/repositories/_index"],
       "@infrastructureLayer|modules": ["src/infrastructure/modules/_index"]
       // "@infrastructureLayer|modules/*": ["src/infrastructure/***/*"],
     },

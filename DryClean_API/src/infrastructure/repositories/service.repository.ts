@@ -1,5 +1,7 @@
+/* eslint-disable class-methods-use-this */
 import { PrismaClient, Service } from '@prisma/client';
 import { BaseRepository } from './base.repository';
+
 const prisma = new PrismaClient().service;
 const prismaType = new PrismaClient().serviceType;
 

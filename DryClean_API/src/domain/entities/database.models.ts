@@ -6,13 +6,21 @@ import { AutoMap } from '@automapper/classes';
  */
 export class User {
   id: number;
+
   email: string;
+
   name: string | null;
+
   surname: string;
+
   phoneNumber: number;
+
   roleId: number;
+
   createdAt: Date;
+
   authConfirmToken: number | null;
+
   isVarrified: boolean | null;
 }
 
@@ -22,6 +30,7 @@ export class User {
  */
 export class Role {
   id: number;
+
   description: string;
 }
 
@@ -31,14 +40,23 @@ export class Role {
  */
 export class Customer {
   id: number;
+
   Name: string;
+
   Surname: string;
+
   Email: string;
+
   MobilePhone: string;
+
   Address: string;
+
   PostalCode: number;
+
   City: string;
+
   Province: string;
+
   Notes: string;
 }
 
@@ -48,19 +66,25 @@ export class Customer {
  */
 export class Order {
   id: number;
+
   @AutoMap()
   invoiceDate: Date;
+
   @AutoMap()
   collectionTime: Date;
+
   @AutoMap()
   orderNumber: number;
 
   @AutoMap()
   VAT: number;
+
   @AutoMap()
   totalAmount: number;
+
   @AutoMap()
   totalAmountWithVAT: number;
+
   @AutoMap()
   userId: number;
 }
@@ -71,9 +95,13 @@ export class Order {
  */
 export class OrderLine {
   id?: number;
+
   quantity: number;
+
   price: number;
+
   orderId: number;
+
   serviceId: number;
 }
 
@@ -83,10 +111,15 @@ export class OrderLine {
  */
 export class Service {
   id: number;
+
   name: string;
+
   picture: string | null;
+
   price: number;
+
   status: string;
+
   serviceTypeId: number;
 }
 
@@ -96,9 +129,13 @@ export class Service {
  */
 export class PaymentInformation {
   id: number;
+
   paymentDate: Date;
+
   paymentclass: string;
+
   paymentOrderNotes: string | null;
+
   orderId: number;
 }
 
@@ -108,7 +145,9 @@ export class PaymentInformation {
  */
 export class Serviceclass {
   id: number;
+
   name: string;
+
   description: string;
 }
 
@@ -118,15 +157,25 @@ export class Serviceclass {
  */
 export class Employee {
   name: string;
+
   surname: string;
+
   employeeCode: number;
+
   email: string;
+
   mobilePhone: number;
+
   address: string;
+
   postalCode: number;
+
   city: string;
+
   province: string;
+
   notes: string | null;
+
   shopId: number;
 }
 
@@ -136,6 +185,8 @@ export class Employee {
  */
 export class Shop {
   id: number;
+
   name: string;
+
   location: string;
 }

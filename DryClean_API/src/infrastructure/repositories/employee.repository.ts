@@ -1,5 +1,7 @@
+/* eslint-disable class-methods-use-this */
 import { Employee, PrismaClient } from '@prisma/client';
 import { BaseRepository } from './base.repository';
+
 const prisma = new PrismaClient().employee;
 
 export class EmployeeRepository extends BaseRepository<

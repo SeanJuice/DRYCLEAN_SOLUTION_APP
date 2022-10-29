@@ -2,10 +2,11 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { CustomerDTO } from '@applicationLayer|dtos';
+// eslint-disable-next-line import/no-unresolved
 import { CustomerService } from '@domainLayer|services';
 import { Controller } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import CustomerDTO from '../dtos/customer.dto';
 import { BaseController } from './base/base.controller';
 
 @ApiBearerAuth()

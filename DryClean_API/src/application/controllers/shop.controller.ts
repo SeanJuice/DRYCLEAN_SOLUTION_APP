@@ -2,9 +2,9 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
+import { ShopService } from '@domainLayer|services';
 import { Controller } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { ShopService } from 'src/domain/services/shop.service';
 import { ShopDTO } from '../dtos/shop.dto';
 import { BaseController } from './base/base.controller';
 

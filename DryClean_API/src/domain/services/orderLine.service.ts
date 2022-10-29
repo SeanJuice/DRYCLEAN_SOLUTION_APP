@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { OrderLineRepository } from '@infrastructureLayer|repositories';
